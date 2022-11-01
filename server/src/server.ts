@@ -7,18 +7,27 @@ const app = express();
 // Create route for add new modal bootstrap
 
 // Route example
-app.get('/example1', function(req, res){
+app.get('/users', function(req, res){
 
     // Example of response with json
     return res.json([
         {
             id: 1, 
-            name: 'Marcos'
+            name: 'John'
         },
         {
             id: 2,
+            name: 'Marie'
+        },
+        {
+            id: 3,
+            name: 'Marcos'
+        },
+        {
+            id: 4,
             name: 'Aline'
         }
+
     ])
 })
 
