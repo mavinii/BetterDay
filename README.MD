@@ -18,12 +18,13 @@ Go to BetterDay/server and run:
 > npm run dev
 
 ## Technologies:
-- NodeJS
+- [NodeJS](https://nodejs.org)
     - Express
     - Typescript
     - @types/express
     - ts-node-dev
-- React
+- [React](https://reactjs.org)
+- [VitJS](https://vitejs.dev)
 
 ## References:
 References go here.
