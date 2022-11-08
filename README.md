@@ -20,6 +20,7 @@ Go to BetterDay/server and run:
 
 ## Front End:
 - [React](https://reactjs.org)
+- [React Native](https://reactnative.dev/)
 - [VitJS](https://vitejs.dev)
 
 ## Back End:
