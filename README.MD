@@ -13,9 +13,17 @@ That is where BetterDay comes in. In order to help people with their daily life,
 ## Figma Project:
 [Click here to se the project BetterDay on Figma](https://www.figma.com/proto/24iRW0iGFwiTycLkji4Jra/A-badDay?node-id=56%3A38&scaling=scale-down&page-id=0%3A1&starting-point-node-id=56%3A38).
 
+## Running the project:
+Go to BetterDay/server and run:
+> npm run dev
+
 ## Technologies:
-
-
+- NodeJS
+    - Express
+    - Typescript
+    - @types/express
+    - ts-node-dev
+- React
 
 ## References:
 References go here.
