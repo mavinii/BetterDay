@@ -18,16 +18,7 @@ app.get('/users', function(req, res){
         {
             id: 2,
             name: 'Marie'
-        },
-        {
-            id: 3,
-            name: 'Marcos'
-        },
-        {
-            id: 4,
-            name: 'Aline'
         }
-
     ])
 })
 
