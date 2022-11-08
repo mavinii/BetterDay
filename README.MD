@@ -27,7 +27,7 @@ Go to BetterDay/server and run:
 - [VitJS](https://vitejs.dev)
 
 ## References:
-References go here.
+?
 
 ## Copyright:
 Please note, this is my Final Project as a student in `Bachelor of Science in Computing, Year 3`, at `Dorset College`, however, it may contain some part of the code that may be Copyright. All the people were duly referenced in the `"References"` section above.
