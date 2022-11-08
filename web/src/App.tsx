@@ -1,5 +1,5 @@
 function App() {
-  return <h1>Hello World test 2</h1>
+  return <h1>Welcome to betteerDay</h1>
 }
 
 export default App
