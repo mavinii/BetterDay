@@ -8,7 +8,7 @@ export default function App() {
       <StatusBar style="auto"/>
       
       {/* Simple title */}
-      <Text style={styles.textTitle}>Welcome to a betterDay</Text>
+      <Text style={styles.textTitle}>Welcome to a betterDay Test</Text>
 
       {/* Button clickable */}
       <Button title={"Here here 1"} />            
