@@ -11,19 +11,20 @@ Have you ever had a day or week when it seems that everything does not go the wa
 
 That is where BetterDay comes in. In order to help people with their daily life, the BetterDay application promises to help the user to solve simple tasks by analysing and understanding the user's daily routine and makes suggestions to help the user to avoid having a similar bad day in the future.
 
-## Figma Project:
-[Click here to se the project BetterDay on Figma](https://www.figma.com/proto/24iRW0iGFwiTycLkji4Jra/A-badDay?node-id=56%3A38&scaling=scale-down&page-id=0%3A1&starting-point-node-id=56%3A38).
+## Layout:
+To access the layout use [Figma](https://www.figma.com/proto/24iRW0iGFwiTycLkji4Jra/A-badDay?node-id=56%3A38&scaling=scale-down&page-id=0%3A1&starting-point-node-id=56%3A38).
 
 ## Running the Project:
 Go to BetterDay/server and run:
 > npm run dev
 
-## Front End:
+## Front-end:
 - [React](https://reactjs.org)
 - [React Native](https://reactnative.dev/)
 - [VitJS](https://vitejs.dev)
+- [Tailwind](https://tailwindcss.com/)
 
-## Back End:
+## Back-end:
 - [NodeJS](https://nodejs.org)
     - Express
     - Typescript

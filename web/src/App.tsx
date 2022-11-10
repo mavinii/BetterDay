@@ -1,16 +1,9 @@
-function Button() {
-  return (
-    <button>
-      Send
-    </button>
-  )  
-}
+import './styles/main.css';
 
 function App() {
   return (
     <div>
-      <h1>Welcome to betteerDay</h1>
-      <p>Clique Here: <Button /></p>
+      <h1>Welcome to a BetterDay</h1>
     </div>
   ) 
 }
