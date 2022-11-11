@@ -1,9 +1,11 @@
 import './styles/main.css';
 
+import logoImage from './assets/betterDay-logo.svg';
+
 function App() {
   return (
-    <div className="w-8 h-8 bg-red-300">
-      <h1>Welcome to a BetterDay</h1>
+    <div className='max-auto flex flex-col items-center m-20'>
+      <img src={logoImage} alt="" />
     </div>
   ) 
 }
