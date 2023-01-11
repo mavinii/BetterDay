@@ -16,7 +16,7 @@ function App() {
       <div className='mb-2'>
         <h2 className='text-4xl font-extrabold text-gray-900'>All days</h2>
         <p className='text-base text-slate-500'>Add new cards of what has been happening</p>
-      </div>            
+      </div>
 
       {/* Cards */}
       <div className='grid grid-cols-3 gap-6 mb-8'>
@@ -146,8 +146,8 @@ function App() {
       <div className='mb-2'>
           <h2 className='text-4xl font-extrabold text-gray-900'>All days</h2>
           <p className='text-base text-slate-500'>Add new cards of what has been happening</p>
-      </div>            
-
+      </div>
+      
       {/* Cards */}
       <div className='grid grid-cols-4 gap-4 '>
 
@@ -162,12 +162,12 @@ function App() {
 
             {/* Card icon and title */}
             <div className='flex flex-row items-center space-x-3'>
-                <div className='flex flex-none items-center justify-center w-10 h-10 text-white'>
-                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-                    <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
-                    <line x1='3' y1='22' x2='21' y2='22' />
-                </svg>
-                </div>
+              <div className='flex flex-none items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                  <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
+                  <line x1='3' y1='22' x2='21' y2='22' />
+              </svg>
+              </div>
                 <strong className='text-2xl font-medium'>Title goes here</strong>
             </div>
 
@@ -202,8 +202,8 @@ function App() {
 
             {/* Card icon and title */}
             <div className='flex flex-row items-center space-x-3'>
-                <div className='flex flex-none items-center justify-center w-10 h-10 text-white'>
-                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                <div className='flex flex-none items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
                     <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
                     <line x1='3' y1='22' x2='21' y2='22' />
                 </svg>
@@ -242,13 +242,13 @@ function App() {
 
             {/* Card icon and title */}
             <div className='flex flex-row items-center space-x-3'>
-                <div className='flex flex-none items-center justify-center w-10 h-10 text-white'>
-                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-                    <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
-                    <line x1='3' y1='22' x2='21' y2='22' />
-                </svg>
-                </div>
-                <strong className='text-2xl font-medium'>Title goes here</strong>
+              <div className='flex flex-none items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                  <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
+                  <line x1='3' y1='22' x2='21' y2='22' />
+              </svg>
+              </div>
+              <strong className='text-2xl font-medium'>Title goes here</strong>
             </div>
 
             {/* Card sub-title, user and button */}
@@ -282,13 +282,13 @@ function App() {
 
             {/* Card icon and title */}
             <div className='flex flex-row items-center space-x-3'>
-                <div className='flex flex-none items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white'>
-                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-                    <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
-                    <line x1='3' y1='22' x2='21' y2='22' />
-                </svg>
-                </div>
-                <span className='text-base font-medium'>Title goes here</span>
+              <div className='flex flex-none items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                  <polygon points='14 2 18 6 7 17 3 17 3 13 14 2' />
+                  <line x1='3' y1='22' x2='21' y2='22' />
+              </svg>
+              </div>
+              <span className='text-2xl font-medium'>Title goes here</span>
             </div>
 
             {/* Card sub-title, user and button */}
