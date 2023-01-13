@@ -8,12 +8,13 @@ import {
   Inter_900Black
 } from '@expo-google-fonts/inter'
 
-
+// Screens
 import { Home } from './src/screens/Home';
-import { Loading } from './src/components/loading';
 
-// Background img for all screens 
-import { Background } from './src/components/background';
+// it is a component that loads the fonts
+import { Loading } from './src/components/Loading';
+// it is a component image that will be used in all screens 
+import { Background } from './src/components/Background';
 
 export default function App() {
 
@@ -31,13 +32,15 @@ export default function App() {
 
   return (
     <Background>
+
+      {/* Status bar transparent */}
       <StatusBar 
       barStyle="dark-content" 
       backgroundColor="trasparent"
-      translucent 
-      
+      translucent      
       />
 
+      {/* it checks if the font is loaded, if not, keeps loading */}
       { fontsLoaded ? <Home /> : <Loading /> }
     </Background>
   );

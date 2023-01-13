@@ -29,9 +29,9 @@ export const THEME = {
     },
 
     FONT_SIZE: {
-        SM: '0.875rem',
-        MD: '1rem',
-        LG: '1.125rem',
+        SM: 13,
+        MD: 17,
+        LG: 22,
     },
 };
 

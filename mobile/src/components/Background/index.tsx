@@ -4,7 +4,7 @@ import { ImageBackground } from 'react-native';
 import { styles } from './styles';
 
 // importing the background img
-import { backgroundImg } from '../../assets/imagens/background-better-day.png';
+import backgroundImg from '../../assets/background-better-day.png';
  
 // creating an interface typed for the backound running in all my application
 interface Props {
@@ -17,7 +17,6 @@ export function Background({ children }: Props) {
     source={ backgroundImg }
     defaultSource={ backgroundImg }
     style={styles.container}
-    
     >
       {children}
     </ImageBackground>
