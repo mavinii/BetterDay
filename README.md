@@ -54,11 +54,14 @@ npx expo start
 
 ## 🤝 References:
 
+### Web:
 - [React Documentation](https://reactjs.org/)
 - [React Native Documentation](https://reactnative.dev/docs/environment-setup)
 - [Rocketseat Education](https://github.com/rocketseat-education)
 
-
+### Mobile:
+- [Expo Google Fonts](https://docs.expo.dev/guides/using-custom-fonts/)
+- [ ]( )
 
 ## ⚠️ Copyright:
 

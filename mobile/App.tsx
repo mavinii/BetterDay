@@ -1,13 +1,44 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
+import { 
+  useFonts,
+  Inter_400Regular,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_900Black
+} from '@expo-google-fonts/inter'
 
-// importing the image background 
+
+import { Home } from './src/screens/Home';
+import { Loading } from './src/components/loading';
+
+// Background img for all screens 
 import { Background } from './src/components/background';
 
 export default function App() {
+
+  // Load fonts
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_900Black
+  });
+
+  if(!fontsLoaded) {
+    return null;
+  }
+
   return (
     <Background>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <StatusBar 
+      barStyle="dark-content" 
+      backgroundColor="trasparent"
+      translucent 
+      
+      />
+
+      { fontsLoaded ? <Home /> : <Loading /> }
     </Background>
   );
 }

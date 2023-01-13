@@ -3,6 +3,8 @@ export const THEME = {
     COLORS: {
         BACKGROUND: '#F8FAFC',
 
+        PRIMARY: '#1E293B',
+        
         TEXT: '#FFFFFF',
         TEXT_TITLE: '#111827',
         TEXT_SUBTITLE: '#76849a',
