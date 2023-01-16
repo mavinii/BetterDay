@@ -121,7 +121,7 @@ function App() {
                 <strong className='text-2xl font-medium'>Title goes here</strong>
             </div>
 
-            {/* Card sub-title, user and button */}
+            {/* Card sub-title, user img and button */}
             <div>Lorem ipsum dolor sit amet, consectetur adipiscing elitsed do eiusmod.</div>
             <div className='flex justify-between items-center'>
               <div>

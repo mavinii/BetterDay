@@ -1,9 +1,14 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
+// Import images
 import logo_img from '../../assets/logo-better-day.png';
-import { Heading } from '../../components/Heading';
 
+// Import components
+import { Heading } from '../../components/Heading';
+import { DayCard } from '../../components/DayCard';
+
+// Import styles
 import { styles } from './styles';
 
 export function Home() {
@@ -18,8 +23,14 @@ export function Home() {
 
       {/* Component Heading */}
       <Heading 
-        title="Bem-vindo ao"
-        subtitle="Better Day"
+        title="All days"
+        subtitle="Add a new card of what has been happening."
+      />
+
+      {/* Component DayCard */}
+      <DayCard
+        title="Monday"
+        subtitle="Today I woke up at 6:00 am and I went to the gym."
       />
 
     </View>

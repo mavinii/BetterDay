@@ -4,10 +4,14 @@ export const THEME = {
         BACKGROUND: '#F8FAFC',
 
         PRIMARY: '#1E293B',
+        SUCCESS: '#111827',
+        ALERT: '#EB5757',
         
         TEXT: '#FFFFFF',
+
         TEXT_TITLE: '#111827',
-        TEXT_SUBTITLE: '#76849a',
+        TEXT_SUBTITLE: '#64748B',
+        DATA_TITLE: '#22C55E',
 
         // ALL MY DAYS CARDS
         CARD_1: '#9B8E89',
@@ -22,16 +26,17 @@ export const THEME = {
 
     },
 
-    FONTS: {
-        BODY: 'system-ui, sans-serif',
-        HEADING: 'Georgia, serif',
-        MONOSPACE: 'Menlo, monospace',
+    FONT_FAMILY: {
+        REGULAR: 'Inter_400Regular',
+        SEMI_BOLD: 'Inter_600SemiBold',
+        BOLD: 'Inter_700Bold',
+        BLACK: 'Inter_900Black',
     },
 
     FONT_SIZE: {
         SM: 13,
-        MD: 17,
-        LG: 22,
+        MD: 16,
+        LG: 24,
     },
 };
 
