@@ -8,6 +8,12 @@ export const styles = StyleSheet.create({
   logo: {
     width: 60,
     height: 60,
-    marginTop: 100,
+    marginTop: 30,
+  },
+  cardsContainer: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    maxHeight: 500,
   },
 });

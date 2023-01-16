@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, ViewProps } from 'react-native';
+import { 
+  View, 
+  TouchableOpacity, 
+  Text, 
+  ViewProps,
+} from 'react-native';
 
 import { styles } from './styles';
 
@@ -11,28 +16,37 @@ interface HeadingProps extends ViewProps {
 
 export function DayCard({ title, subtitle, ...rest }: HeadingProps) {
   return (
-    <View style={styles.container} {...rest}>
+    <View {...rest}>
       
-      <View style={styles.card}>
+      <TouchableOpacity style={styles.card}>
         <Text style={styles.title}>
           {title}
         </Text>
         <Text style={styles.subtitle}>
           {subtitle}
         </Text>
-      </View>
+      </TouchableOpacity>
 
-
-      <View style={styles.card}>
-        <Text style={styles.title}>
-          {/* {title} */}
-        </Text>
-        <Text style={styles.subtitle}>
-          {/* {subtitle} */}
-        </Text>
-      </View>
-
-      
     </View>
   );
 }
+
+
+
+// <View style={styles.card}>
+// <Text style={styles.title}>
+//   {title}
+// </Text>
+// <Text style={styles.subtitle}>
+//   {subtitle}
+// </Text>
+// </View>
+
+// <View style={styles.card}>
+// <Text style={styles.title}>
+//   {title}
+// </Text>
+// <Text style={styles.subtitle}>
+//   {subtitle}
+// </Text>
+// </View>
