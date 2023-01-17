@@ -18,35 +18,15 @@ export function DayCard({ title, subtitle, ...rest }: HeadingProps) {
   return (
     <View {...rest}>
       
-      <TouchableOpacity style={styles.card}>
+      <View style={styles.card}>
         <Text style={styles.title}>
           {title}
         </Text>
         <Text style={styles.subtitle}>
           {subtitle}
         </Text>
-      </TouchableOpacity>
+      </View>
 
     </View>
   );
 }
-
-
-
-// <View style={styles.card}>
-// <Text style={styles.title}>
-//   {title}
-// </Text>
-// <Text style={styles.subtitle}>
-//   {subtitle}
-// </Text>
-// </View>
-
-// <View style={styles.card}>
-// <Text style={styles.title}>
-//   {title}
-// </Text>
-// <Text style={styles.subtitle}>
-//   {subtitle}
-// </Text>
-// </View>

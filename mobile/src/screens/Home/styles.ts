@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   cardsContainer: {
-    flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
     maxHeight: 500,

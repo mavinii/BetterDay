@@ -24,15 +24,16 @@ export const THEME = {
         DEFAULT_ICON: '#FFFFFF',
         CUSTOM_ICON: '#23C55E',
 
-    },
+        FOOTER: ['rgba(0, 0, 0, 0.5)', 'rgba(0, 0, 0, 0.5)'],
+        OVERLAY: 'rgba(0, 0, 0, 0.6)',
 
+    },
     FONT_FAMILY: {
         REGULAR: 'Inter_400Regular',
         SEMI_BOLD: 'Inter_600SemiBold',
         BOLD: 'Inter_700Bold',
         BLACK: 'Inter_900Black',
     },
-
     FONT_SIZE: {
         SM: 13,
         MD: 16,
