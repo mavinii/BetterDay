@@ -3,11 +3,11 @@ import { THEME } from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
-    marginRight: 15,    
+    marginRight: 15,
   },
   cover: {
-    width: 240,
-    height: 320,
+    width: 160,
+    height: 240,
     borderRadius: 8,
     justifyContent: 'flex-end',
     overflow: 'hidden',

@@ -3,9 +3,11 @@ import { THEME } from '../../theme';
 
 // Cards styles
 export const styles = StyleSheet.create({
+  container: {
+    margin: 4,
+  },
   card: {
     padding: 10,
-    margin: 5,
     width: 188,
     height: 118,
     borderRadius: 10,

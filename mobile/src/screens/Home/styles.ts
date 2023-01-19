@@ -15,4 +15,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     maxHeight: 500,
   },
+  contentListDayCard: {
+    paddingLeft: 10,
+    paddingRight: 20,
+  },
+  contentListSuggestionsCard: {
+    paddingLeft: 18,
+    paddingRight: 50,
+  },
 });

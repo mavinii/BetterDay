@@ -15,32 +15,14 @@ import { DayCard } from '../../components/DayCard';
 import { HeadingSugestions } from '../../components/HeadingSugestions';
 import { SuggestionsCard } from '../../components/SuggestionsCard';
 
-// Import Suggestions
-import {SUGGESTIONS} from '../../utils/suggestions';
+// Import Suggestions and Data
+import { SUGGESTIONS } from '../../utils/suggestions';
+import { DATA } from '../../utils/data';
 
 // Import styles
 import { styles } from './styles';
-import { units } from '../../theme/units';
 
 export function Home() {
-  const data = [
-    {
-      id: '1',
-      title: 'Today',
-      subtitle: 'laboriosam excepturi velit aperiam assumenda unde dolorem animi ipsa illo!'
-    },
-    {
-      id: '2',
-      title: 'Yesterday',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-    },
-    // {
-    //   id: '3',
-    //   title: 'Last week',
-    //   subtitle: 'This happened last week'
-    // },
-  ]
-
   return (
     <SafeAreaView style={styles.container}>
 
@@ -56,40 +38,49 @@ export function Home() {
         subtitle="Add a new card of what has been happening."
       />
 
-      {/* Component DayCard with FlatList */}
+      {/* This will be the cards the users are going to add */}
       <View style={styles.cardsContainer}>
         <FlatList
-          data={data}
+          data={DATA}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <DayCard
               title={item.title}        // title="" 
               subtitle={item.subtitle}  // subtitle=""
+              // icon="plus"               // icon=""
+              // image="https://images.unsplash.com/photo-1616161616161-1c1c1c1c1c1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
             />
           )}
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          contentContainerStyle={{
-            paddingHorizontal: units.padding,
-            paddingBottom: units.padding,
-          }}          
+          contentContainerStyle={styles.contentListDayCard}          
         />
       </View>
 
-      {/* Sugestions component title and subtitle */}
+      {/* Sugestions component with title and subtitle */}
       <HeadingSugestions 
         title="Lorem ipsum"
         subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />
 
-      {/* Component SuggestionsCard background imgs */}
-      <SuggestionsCard
-        data={{
-          id: SUGGESTIONS[0].id,
-          name: SUGGESTIONS[0].name,
-          ads: SUGGESTIONS[0].ads,
-          cover: SUGGESTIONS[0].cover,
-        }}
+      {/* This will be the cards the users will recieve as suggestions of how to avoid it */}
+      {/* This also uses Flatlist that allows to display all cards horizontal */}
+      <FlatList
+        data={SUGGESTIONS}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <SuggestionsCard
+            data={{
+              id: item.id,
+              name: item.name,
+              ads: item.ads,
+              cover: item.cover,
+            }}
+          />
+        )}
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        contentContainerStyle={styles.contentListSuggestionsCard}
       />
 
     </SafeAreaView>

@@ -1,20 +1,23 @@
 import { StyleSheet } from 'react-native';
 import { THEME } from '../../theme';
 
+// Suggetions styles
 export const styles = StyleSheet.create({
     container: {
       width: '100%',
-      padding: 20,
-      marginTop: 20,
+      marginTop: 30,
     },
     title: {
       color: THEME.COLORS.TEXT_TITLE,
       fontSize: THEME.FONT_SIZE.LG,
       fontFamily: THEME.FONT_FAMILY.BOLD,
+      paddingLeft: 15,
     },
     subtitle: {
       color: THEME.COLORS.TEXT_SUBTITLE,
       fontSize: THEME.FONT_SIZE.SM,
       fontFamily: THEME.FONT_FAMILY.REGULAR,
+      paddingLeft: 15,
+      marginBottom: 5,
     },
   });

@@ -16,7 +16,7 @@ interface HeadingProps extends ViewProps {
 
 export function DayCard({ title, subtitle, ...rest }: HeadingProps) {
   return (
-    <View {...rest}>
+    <View style={styles.container} {...rest}>
       
       <View style={styles.card}>
         <Text style={styles.title}>
