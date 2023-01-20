@@ -14,10 +14,11 @@ These informations will be stored in the database.
 ### Cards
 - id;             <!-- Primary key -->
 - title;          <!-- Title of the card was created -->
-- date;           <!-- Date of the card was created -->
-- subtitle;       <!-- Subtitle of the card -->
 - description;    <!-- Description of the card in details -->
 - goodOrBad;      <!-- Good or bad option -->
+- createdAt;      <!-- Date of the card was created -->
+- updatedAt       <!-- Date of the card was updated -->
+- deletedAt       <!-- Date of the card was deleted -->
 
 ### Suggestions Card
 - id;             <!-- Primary key -->

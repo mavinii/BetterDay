@@ -25,15 +25,31 @@ To access the layout use [Figma](https://www.figma.com/proto/24iRW0iGFwiTycLkji4
 
 ## 💻 How to run this project:
 
-Web page:
-```
+Web Page:
+```js
+// Using Vite / React:
+
 cd BetterDay/web
 npm run dev
 ```
-Mobile:
-```
+
+Mobile App:
+```js
+// Using Expo:
+
 cd mobile
 npx expo start
+```
+
+Server Back-end:
+```js
+// Using Prisma Studio / SQLite;
+// Go to localhost:5555 to see the database in real time:
+
+cd server
+npm run dev
+// and
+npx prisma studio
 ```
 
 ## 🚀 Front-end:
@@ -51,6 +67,26 @@ npx expo start
     - Typescript
     - @types/express
     - ts-node-dev
+  
+- [Knex - SQL Query Builder](http://knexjs.org/) - Knex allows allows developers to write SQL statements in JavaScript, making it more readable, maintainable, and less prone to errors. For example, instead of writing a SQL statement like this:
+
+```sql
+SELECT * FROM users WHERE id = 1
+```
+
+You can write it like this:
+
+```js
+knex('users').where('id', 1).select('*')
+```
+
+- [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript.
+
+
+## 🚀 Database:
+
+  - [Node - SQLite3](https://www.npmjs.com/package/sqlite3)
+
 
 ## 🤝 References:
 
