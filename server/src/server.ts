@@ -1,25 +1,35 @@
-import express, { application } from 'express';
+import express from 'express';
 
 const app = express();
 
-// Create route for user once sign in
+// Login route
+app.get('/login', function(req, res){
+    return res.status(200).json({
+        alert: 'This will be displayed when the user clicks on the login button, or the card to add a new card'
+    })
+})
 
-// Create route for add new modal bootstrap
+// This will the the method to create a new card
+app.post('/cards', function(req, res){
+    return res.json({
+        alert: 'This screen the user will be able to create a new card'
+    })
+})
 
-// Route example
-app.get('/users', function(req, res){
+// This will be displaying the card the user just created
+app.get('/cards', function(req, res){
+    return res.json({
+        alert: 'This screen the user will be able to see all the cards he created'
+    })
+})
 
-    // Example of response with json
-    return res.json([
-        {
-            id: 1, 
-            name: 'John'
-        },
-        {
-            id: 2,
-            name: 'Marie'
-        }
-    ])
+// This will be the card suggested by the AI, based on what the user typed, and will be displayed in the home screen
+app.get('/suggested/:id/cards', function(req, res){
+    const { id } = req.params;
+
+    return res.send({
+        alert: `This screen the user will be able to see all the suggested cards based on the id: >>>> ${id} <<<<`
+    })
 })
 
 // starting server

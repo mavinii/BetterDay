@@ -73,7 +73,7 @@ export function Home() {
             data={{
               id: item.id,
               name: item.name,
-              ads: item.ads,
+              subtitle: item.subtitle,
               cover: item.cover,
             }}
           />

@@ -15,7 +15,7 @@ import { THEME } from '../../theme';
 export interface SuggestionsCardProps {
   id: string;
   name: string;
-  ads: string; 
+  subtitle: string; 
   cover: ImageSourcePropType;
 } 
 
@@ -40,7 +40,7 @@ export function SuggestionsCard({ data, ...rest }: Props) {
               {data.name}
             </Text>
             <Text style={styles.ads}>
-              {data.ads}
+              {data.subtitle}
             </Text>
           </LinearGradient>
 
