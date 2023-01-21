@@ -7,13 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// This is my model Card
+// This is my User model, the user who will creating the cards
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  cards     Card[]
+}
+
+
+
+// This is the Card the user will be able to create
 model Card {
   id          Int      @id @default(autoincrement())
+  userId      Int
+
   title       String
   description String
   goodOrBad   Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   deletedAt   DateTime?
+  user        User     @relation(fields: [userId], references: [id])
+
+  suggesteds  SuggestedCard[]
+}
+
+
+
+// This SuggestedCard model, will be suggested to the user based on the card he created
+model SuggestedCard {
+  id            Int      @id @default(autoincrement())
+  cardId        Int
+
+  title         String
+  subtitle      String
+  backgroundImg String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  card          Card     @relation(fields: [cardId], references: [id])
 }
