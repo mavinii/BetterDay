@@ -67,7 +67,8 @@ npx prisma studio
     - Typescript
     - @types/express
     - ts-node-dev
-  
+    - [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript.
+
 - [Knex - SQL Query Builder](http://knexjs.org/) - Knex allows allows developers to write SQL statements in JavaScript, making it more readable, maintainable, and less prone to errors. For example, instead of writing a SQL statement like this:
 
 ```sql
@@ -80,12 +81,9 @@ You can write it like this:
 knex('users').where('id', 1).select('*')
 ```
 
-- [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript.
-
-
 ## 🚀 Database:
 
-  - [Node - SQLite3](https://www.npmjs.com/package/sqlite3)
+  - [Node - SQLite3](https://www.npmjs.com/package/sqlite3) using Prisma.
 
 
 ## 🤝 References:
@@ -97,7 +95,6 @@ knex('users').where('id', 1).select('*')
 
 ### Mobile:
 - [Expo Google Fonts](https://docs.expo.dev/guides/using-custom-fonts/)
-- [ ]( )
 
 ## ⚠️ Copyright:
 

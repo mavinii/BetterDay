@@ -1,31 +1,15 @@
 import express from 'express';
+import { PrismaClient } from '@prisma/client';
 
 const app = express();
 
-// Create route for user once sign in
-
-// Create route for add new modal bootstrap
-
-// HTTP methods / API RESTful
-// GET: Get entity from server
-// POST: Creating and send entity to server
-// PUT: Update entities in server
-// PATH: Update a specific entity in server
-// DELETE: Delete entity in server
-    // HPPT Status Code:
-    // .status(200) OK - Generic response for success
-    // .status(201) CREATED
-    // .status(400) 
-    // .status(404) 
-    // .status(500)
-    // know more about: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-
-
-/**
-*   Query Params: ... /users?search=Diego  
-*   Route Params: ... /users/how-to-code-with-react (Identify a resource)
-*   Request Body: ... /users/1 (used to send lot of information, like a form)
+/*
+*  This is the prisma client, that will be used to connect to the database
+*  The log is to show the queries in the console, so we can see what is happening
 */
+const prisma = new PrismaClient({
+    log: ['query', 'info', 'warn'],
+});
 
 // Login route
 app.get('/login', function(req, res){
@@ -34,34 +18,60 @@ app.get('/login', function(req, res){
     })
 })
 
-// This will the the method to create a new card
+/*
+*   
+*   
+*/
 app.post('/cards', function(req, res){
     return res.json({
         alert: 'This screen the user will be able to create a new card'
     })
 })
 
-// This will be displaying the card the user just created
-app.get('/cards', function(req, res){
-    return res.json({
-        alert: 'This screen the user will be able to see all the cards he created'
-    })
+
+/*
+*   This will be displaying the card the user just created.
+*   Using async and await, because the prisma is a promise, and we need to wait for the response.
+*   Then the user will be able to edit the card, and save it.
+*/
+app.get('/cards', async function(req, res){
+
+    // This selects all the suggested cards, related to the card that is being created
+    const cards = await prisma.card.findMany({
+        include: {
+            _count: {
+                select: {
+                    suggesteds: true,
+                }
+            }
+        }
+    });
+
+    return res.json(cards);
 })
 
-// This will be the card suggested by the AI, based on what the user typed, and will be displayed in the home screen
-app.get('/suggested/:id/cards', function(req, res){
 
-    // This is and example of how to get the id from the route params
-    const { id } = req.params;
+/*
+*   This will be the card suggested by the AI, based on what the user typed.
+*   Also it will be displayed in the home screen
+*   Using async and await, because the prisma is a promise, and we need to wait for the response.
+*/
+app.get('/cards/:id/suggested', async function(req, res){
 
-    return res.send({
-        alert: `This screen the user will be able to see all the suggested cards based on the id: >>>> ${id} <<<<`
-    })
+    // This get the cardID from the URL
+    const cardId = req.params.id;
 
+    // Converting cardId from string to number
+    const cardIdNumber = parseInt(cardId);
 
-    return res.json({
-        alert: 'SUGGESTED CARDS - SCREEN'
-    })
+    // All suggested cards related to the card that is being created by the user
+    const suggested = await prisma.suggestedCard.findMany({
+        where: {
+            cardId: cardIdNumber
+        }
+    });        
+        
+    return res.json(suggested);
 })
 
 // starting server
