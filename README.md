@@ -10,7 +10,7 @@
 - College: [Dorset College](https://dorset.ie/)
 
 <p align="center">
-    <img alt="BetterDay" src="./web/preview/preview.png" >
+  <img alt="BetterDay" src="./web/preview/preview.png" >
 </p>
 
 ## 📝 Introduction:
@@ -29,7 +29,7 @@ Web Page:
 ```js
 // Using Vite / React:
 
-cd BetterDay/web
+cd web
 npm run dev
 ```
 
@@ -54,32 +54,41 @@ npx prisma studio
 
 ## 🚀 Front-end:
 
-- [React](https://reactjs.org)
-- [React Native](https://reactnative.dev/)
-- [VitJS](https://vitejs.dev)
-- [Tailwind](https://tailwindcss.com/)
-- [PostCSS](https://postcss.org/)
+- [React](https://reactjs.org) - is a JavaScript library for building user interfaces.
+- [React Native](https://reactnative.dev/) - is a JavaScript library for building native mobile apps.
+- [VitJS](https://vitejs.dev) - is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+- [Tailwind](https://tailwindcss.com/) - is a utility-first CSS framework for rapidly building custom user interfaces.
+- [PostCSS](https://postcss.org/) - is a tool for transforming CSS with JavaScript.
 
 ## 🚀 Back-end:
 
-- [NodeJS](https://nodejs.org)
-    - Express
-    - Typescript
-    - @types/express
-    - ts-node-dev
-    - [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript.
+- [NodeJS](https://nodejs.org/en/) - is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Express](https://expressjs.com/) - is a web application framework for Node.js.
+- [Typescript](https://www.typescriptlang.org/) - is a typed superset of JavaScript that compiles to plain JavaScript.
+- [@types/express](https://www.npmjs.com/package/@types/express) - is a TypeScript definition file for Express.
+- [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) - is a tool that helps develop Node.js applications with TypeScript.
+- [cors](https://www.npmjs.com/package/cors) - is a node.js package for protecting the API from other domains to access our API.
+- [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript. 
 
-- [Knex - SQL Query Builder](http://knexjs.org/) - Knex allows allows developers to write SQL statements in JavaScript, making it more readable, maintainable, and less prone to errors. For example, instead of writing a SQL statement like this:
+  Instead of writing a SQL statement like this:
+  ```sql
+  SELECT * FROM users WHERE id = 1
+  ```
 
-```sql
-SELECT * FROM users WHERE id = 1
-```
-
-You can write it like this:
-
-```js
-knex('users').where('id', 1).select('*')
-```
+  You can write it like this:
+  ```js
+  prisma({
+    select: {
+        title: true,
+    },
+    where: {
+        id: 1
+    },
+    orderBy: {
+        createdAt: 'desc'
+    }        
+  });
+  ```
 
 ## 🚀 Database:
 
