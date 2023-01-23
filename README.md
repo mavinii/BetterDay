@@ -25,7 +25,7 @@ To access the layout use [Figma](https://www.figma.com/proto/24iRW0iGFwiTycLkji4
 
 ## 💻 How to run this project:
 
-Web Page:
+`Web`:
 ```js
 // Using Vite / React:
 
@@ -33,7 +33,7 @@ cd web
 npm run dev
 ```
 
-Mobile App:
+`Mobile`:
 ```js
 // Using Expo:
 
@@ -41,7 +41,7 @@ cd mobile
 npx expo start
 ```
 
-Server Back-end:
+`Server`:
 ```js
 // Using Prisma Studio / SQLite;
 // Go to localhost:5555 to see the database in real time:
