@@ -94,19 +94,21 @@ npx prisma studio
 
   - [Node - SQLite3](https://www.npmjs.com/package/sqlite3) using Prisma.
 
-
 ## 🤝 References:
-
 ### Web:
 - [React Documentation](https://reactjs.org/)
 - [React Native Documentation](https://reactnative.dev/docs/environment-setup)
 - [Rocketseat Education](https://github.com/rocketseat-education)
+- [Tailwind CSS Team Cards](https://tailwindcomponents.com/component/upgrade-team)
 
 ### Mobile:
 - [Expo Google Fonts](https://docs.expo.dev/guides/using-custom-fonts/)
 
-## ⚠️ Copyright:
+### Server:
+- [Cors Documentation](https://expressjs.com/en/resources/middleware/cors.html)
 
+
+## ⚠️ Copyright:
 Please note, this is my Final Project as a student in `Bachelor of Science in Computing, Year 3`, at `Dorset College`, however, it may contain some part of the code that may be Copyright. All the people were duly referenced in the `"References"` section above.
 
 Please also note that this project is `non-profit` and not intended to be monetized.

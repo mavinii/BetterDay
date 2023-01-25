@@ -21,8 +21,7 @@ model User {
 }
 
 
-
-// This is the Card the user will be able to create
+// This filds are the cards that the user will create, it is saved in the database
 model Card {
   id          Int      @id @default(autoincrement())
   userId      Int
