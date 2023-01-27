@@ -1,12 +1,11 @@
 import React from "react";
 
-
 /**
- * FIXME: Create a function that genetares 
+ * FIXME: Create a function that genetares
  * random backgroundColors and saves them in database
  * This interface is used to define the type of the props
  * and it is coming from the database (schema.prisma)
- */ 
+ */
 interface CardsProps {
   cardAbout: string;
   title: string;
@@ -30,7 +29,7 @@ export default class Cards extends React.Component<CardsProps> {
         {/* Card about and data */}
         <div className="flex items-center justify-between font-medium">
           <span className="uppercase text-xs text-white">
-            {"#"+this.props.title}
+            {"#" + this.props.title}
           </span>
           <span className="text-xs text-white">{this.props.createdAt}</span>
         </div>
@@ -57,6 +56,7 @@ export default class Cards extends React.Component<CardsProps> {
         </div>
 
         {/* Card sub-title, user img and button */}
+        {/* TODO: push the user picture to the right side, where the button was */}
         <div>{this.props.description}</div>
         <div className="flex justify-between items-center">
           <div>
@@ -65,30 +65,12 @@ export default class Cards extends React.Component<CardsProps> {
               <a href="#" className="inline-block -m-1">
                 <img
                   className="w-7 h-7 rounded-full ring-2 ring-white"
-                  src={ userUrl }
+                  src={userUrl}
                   alt="user picture"
                 />
               </a>
             </dd>
           </div>
-          <button
-            className={`flex items-center justify-center text-xs font-medium rounded-full px-4 py-1 space-x-1 border-2 border-black hover:bg-black hover:text-white text-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black`}
-          >
-            <span>Add</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h13M12 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
       </div>
     );

@@ -1,12 +1,17 @@
 import React from "react";
 
-// Properties of the Suggested card
+/**
+ * FIXME: Create a function that genetares 
+ * random backgroundColors and saves them in database
+ * This interface is used to define the type of the props
+ * and it is coming from the database (schema.prisma)
+ */ 
 interface SuggestedCardsProps {
   cardAbout: string;
-  date: string;
-  icon: string;
   title: string;
-  subtitle: string;
+  description: string;
+  createdAt: string;
+  icon: string;
   backgroundColor: string;
 }
 
@@ -22,9 +27,9 @@ export default class SuggestedCards extends React.Component<SuggestedCardsProps>
         {/* Card about and data */}
         <div className="flex items-center justify-between font-medium">
           <span className="uppercase text-xs text-green-500">
-            {this.props.cardAbout}
+            {"#"+this.props.cardAbout}
           </span>
-          <span className="text-xs text-slate-500">15/11/2022</span>
+          <span className="text-xs text-slate-500">{this.props.createdAt}</span>
         </div>
 
         {/* Card icon and title */}
@@ -45,13 +50,11 @@ export default class SuggestedCards extends React.Component<SuggestedCardsProps>
               <line x1="3" y1="22" x2="21" y2="22" />
             </svg>
           </div>
-          <strong className="text-2xl font-medium">Title goes here</strong>
+          <strong className="text-2xl font-medium">{this.props.title}</strong>
         </div>
 
         {/* Card sub-title, user and button */}
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elitsed do eiusmod.
-        </div>
+        <div>{this.props.description}</div>
         <div className="flex justify-between items-center">
           <button className="flex items-center justify-center text-xs font-medium rounded-full px-4 py-1 space-x-1 border-2 border-black bg-white hover:bg-black hover:text-white text-black dark:bg-slate-800 dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black">
             <span>Know more</span>

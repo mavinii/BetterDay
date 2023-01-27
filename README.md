@@ -59,6 +59,7 @@ npx prisma studio
 - [VitJS](https://vitejs.dev) - is a build tool that aims to provide a faster and leaner development experience for modern web projects.
 - [Tailwind](https://tailwindcss.com/) - is a utility-first CSS framework for rapidly building custom user interfaces.
 - [PostCSS](https://postcss.org/) - is a tool for transforming CSS with JavaScript.
+- [Radix-ui](https://www.radix-ui.com/) - Unstyled, accessible components for building high‑quality design systems and web apps in React.
 
 ## 🚀 Back-end:
 
