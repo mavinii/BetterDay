@@ -22,7 +22,7 @@ export default class Cards extends React.Component<CardsProps> {
     const userUrl = "https://thispersondoesnotexist.com/image";
 
     return (
-      <div
+      <div 
         className={`break-inside relative overflow-hidden flex flex-col justify-between space-y-3 text-sm rounded-xl max-w-full p-4 mb-4 shadow-lg dark:text-white`}
         style={{ backgroundColor }}
       >
