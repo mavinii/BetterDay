@@ -60,6 +60,7 @@ npx prisma studio
 - [Tailwind](https://tailwindcss.com/) - is a utility-first CSS framework for rapidly building custom user interfaces.
 - [PostCSS](https://postcss.org/) - is a tool for transforming CSS with JavaScript.
 - [Radix-ui](https://www.radix-ui.com/) - Unstyled, accessible components for building high‑quality design systems and web apps in React.
+- [React Icons](https://react-icons.github.io/react-icons/icons?name=md) - is a library of icons for React.
 
 ## 🚀 Back-end:
 

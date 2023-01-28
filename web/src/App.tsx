@@ -9,6 +9,7 @@ import Cards from "./components/Cards";
 import SuggestedCards from "./components/SuggestedCards";
 import CreateCard from "./components/CreateCard";
 import { Input } from "./components/Form/Input";
+import { Hero } from "./components/Hero";
 
 /**
  * These interfaces are used to define the type of data that will be used in the application
@@ -64,15 +65,9 @@ function App() {
 
   return (
     <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      {/* Header */}
-      <div className="flex flex-col items-center m-20">
-        <h1 className="mb-4 text-6xl font-extrabold text-gray-900 mt-3">
-          Designed to give you a BetterDay
-        </h1>
-        <p className="text-3xl text-slate-500">
-          For those who want to improve their day by avoiding simple issues.
-        </p>
-      </div>
+
+      {/* Section Hero */}
+      <Hero />
 
       {/* FIXME:
         This is calling the component CreateCard, once the user clicks on Add Button
@@ -100,16 +95,17 @@ function App() {
                 <label htmlFor="title" className="text-xl font-semibold">
                   Title
                 </label>
-                <Input id="title" placeholder="Lorem ipsum" />
+                <Input id="title" placeholder="Lorem ipsum" required />
               </div>
 
               <div className="mt-2 flex flex-col">
                 <label htmlFor="description" className="text-xl font-semibold">
                   Description
                 </label>
-                <Input id="description" placeholder="Lorem ipsum" />
+                <Input id="description" placeholder="Lorem ipsum" required />
               </div>
 
+              {/* Feelins questions */}
               <div className="mt-2">
                 <label htmlFor="goodOrBar" className="text-xl font-semibold">
                   My feelings about it:
@@ -200,24 +196,27 @@ function App() {
                   <Input id="time" type="time" />
                   <Input id="time" type="time" />
                 </div>
-              </div>              
+              </div>
 
               {/* AI Agreement */}
               <div className="mt-2 flex gap-3 text-sm">
-                <input type="checkbox" /> I allow AI to suggest me cards based on this.
+                <input type="checkbox" required />I allow the AI helping me
+                based on the information provided.
               </div>
 
               {/* Buttons */}
               <footer className="mt-5 flex justify-between items-center">
-                <button 
+                <Dialog.Close
                   type="button"
-                  className="bg-zinc-500 text-white rounded py-2 px-4"
-                  >Cancel
-                </button>
-                <button 
+                  className="bg-zinc-500 text-white rounded py-2 px-4 hover:bg-zinc-600"
+                >
+                  Cancel
+                </Dialog.Close>
+                <button
                   type="submit"
-                  className="bg-[#5C2C5D] text-white rounded py-2 px-4"
-                  >Create Card
+                  className="bg-[#5C2C5D] text-white rounded py-2 px-4 hover:bg-[#49134a]"
+                >
+                  Create Card
                 </button>
               </footer>
             </form>
