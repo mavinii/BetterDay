@@ -8,8 +8,9 @@ import logoImage from "./assets/betterDay-logo.svg";
 import Cards from "./components/Cards";
 import SuggestedCards from "./components/SuggestedCards";
 import CreateCard from "./components/CreateCard";
-import { Input } from "./components/Form/Input";
 import { Hero } from "./components/Hero";
+import { CreateCardModal } from "./components/CreateCardModal";
+import axios from "axios";
 
 /**
  * These interfaces are used to define the type of data that will be used in the application
@@ -39,16 +40,15 @@ interface Suggested {
 }
 
 function App() {
+
   // It hands the list of Cards the user created
   const [cards, setCards] = React.useState<Card[]>([]);
 
   // It is fetching the Cards Data from the API
   useEffect(() => {
-    fetch("http://localhost:3333/cards")
-      .then((response) => response.json())
-      .then((data) => {
-        setCards(data);
-      });
+    axios("http://localhost:3333/cards").then(response => {
+      setCards(response.data);
+    });
   }, []);
 
   // It hands the list of Suggested Cards by AI, based in the user created
@@ -56,11 +56,9 @@ function App() {
 
   // It is fetching the Suggested Cards Data from the API
   useEffect(() => {
-    fetch("http://localhost:3333/cards/1/suggested")
-      .then((response) => response.json())
-      .then((data) => {
-        setSuggestedCards(data);
-      });
+    axios(`http://localhost:3333/cards/1/suggested`).then(response => {
+      setSuggestedCards(response.data);
+    });
   }, []);
 
   return (
@@ -69,159 +67,10 @@ function App() {
       {/* Section Hero */}
       <Hero />
 
-      {/* FIXME:
-        This is calling the component CreateCard, once the user clicks on Add Button
-        This is also using Redix UI, I should be able to add the Dialog.Trigger on the
-        Button within the Card, but for some reason, it is not working, so de Solution that I found
-        was to link it, in the CreateCard Comp, intead to create a button, I create an Trigger. */}
+      {/* This is calling the component CreateCard and CreatedCardModal from compoments */}
       <Dialog.Root>
         <CreateCard />
-
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-black/60" />
-
-          <Dialog.Content className="fixed bg-[#e5e5e5] py-8 px-10 text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[480] shadow-lg shadow-black/20">
-            <Dialog.Title className="text-3xl font-bold">
-              Lorem ipsum
-            </Dialog.Title>
-            <Dialog.Description className="text-xs font-thin">
-              27/01/2012
-            </Dialog.Description>
-
-            {/* Check Form with Component folder */}
-            <form className="flex flex-col gap-4">
-              {/* Title */}
-              <div className="mt-7 flex flex-col">
-                <label htmlFor="title" className="text-xl font-semibold">
-                  Title
-                </label>
-                <Input id="title" placeholder="Lorem ipsum" required />
-              </div>
-
-              <div className="mt-2 flex flex-col">
-                <label htmlFor="description" className="text-xl font-semibold">
-                  Description
-                </label>
-                <Input id="description" placeholder="Lorem ipsum" required />
-              </div>
-
-              {/* Feelins questions */}
-              <div className="mt-2">
-                <label htmlFor="goodOrBar" className="text-xl font-semibold">
-                  My feelings about it:
-                </label>
-
-                <div className="flex justify-between items-center">
-                  <div>
-                    <Input type="radio" id="good" name="good" />
-                    <label htmlFor="good"> Good </label>
-                  </div>
-                  <div>
-                    <Input type="radio" id="bad" name="bad" />
-                    <label htmlFor="bad"> Bad </label>
-                  </div>
-                  <div>
-                    <Input type="radio" id="iamnotsure" name="iamnotsure" />
-                    <label htmlFor="iamnotsure"> I am not sure </label>
-                  </div>
-                </div>
-              </div>
-
-              {/* What time and days of the week  */}
-              <div>
-                <label htmlFor="time" className="text-xl font-semibold">
-                  What day(s) was it?
-                </label>
-
-                <div className="flex justify-between items-center mt-2">
-                  <button
-                    title="Mon"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    M
-                  </button>
-                  <button
-                    title="Tue"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    T
-                  </button>
-                  <button
-                    title="Wed"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    W
-                  </button>
-                  <button
-                    title="Thu"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    T
-                  </button>
-                  <button
-                    title="Fri"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    F
-                  </button>
-                  <button
-                    title="Sat"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    S
-                  </button>
-                  <button
-                    title="Sun"
-                    className="w-8 h-8 ronded bg-zinc-800 text-white"
-                  >
-                    {" "}
-                    S
-                  </button>
-                </div>
-              </div>
-
-              {/* Time the user used to do  */}
-              <div className="mt-2 flex flex-col gap-1 flex-1">
-                <label className="text-xl font-semibold">
-                  What time do you used to do it?
-                </label>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <Input id="time" type="time" />
-                  <Input id="time" type="time" />
-                </div>
-              </div>
-
-              {/* AI Agreement */}
-              <div className="mt-2 flex gap-3 text-sm">
-                <input type="checkbox" required />I allow the AI helping me
-                based on the information provided.
-              </div>
-
-              {/* Buttons */}
-              <footer className="mt-5 flex justify-between items-center">
-                <Dialog.Close
-                  type="button"
-                  className="bg-zinc-500 text-white rounded py-2 px-4 hover:bg-zinc-600"
-                >
-                  Cancel
-                </Dialog.Close>
-                <button
-                  type="submit"
-                  className="bg-[#5C2C5D] text-white rounded py-2 px-4 hover:bg-[#49134a]"
-                >
-                  Create Card
-                </button>
-              </footer>
-            </form>
-          </Dialog.Content>
-        </Dialog.Portal>
+        <CreateCardModal />
       </Dialog.Root>
 
       {/* Cards user created */}

@@ -82,7 +82,7 @@ export function Hero() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-light text-slate-500">
-                      3. See the magic happen.
+                      3. See the magic happens.
                     </h3>
                   </div>
                 </div>

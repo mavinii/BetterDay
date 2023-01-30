@@ -61,6 +61,7 @@ npx prisma studio
 - [PostCSS](https://postcss.org/) - is a tool for transforming CSS with JavaScript.
 - [Radix-ui](https://www.radix-ui.com/) - Unstyled, accessible components for building high‑quality design systems and web apps in React.
 - [React Icons](https://react-icons.github.io/react-icons/icons?name=md) - is a library of icons for React.
+- [Axios](https://www.npmjs.com/package/axios) - helps us to make HTTP requests to our API using Node.
 
 ## 🚀 Back-end:
 
@@ -70,7 +71,7 @@ npx prisma studio
 - [@types/express](https://www.npmjs.com/package/@types/express) - is a TypeScript definition file for Express.
 - [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) - is a tool that helps develop Node.js applications with TypeScript.
 - [cors](https://www.npmjs.com/package/cors) - is a node.js package for protecting the API from other domains to access our API.
-- [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript. 
+- [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript.
 
   Instead of writing a SQL statement like this:
   ```sql

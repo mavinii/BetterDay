@@ -2,10 +2,13 @@ import express from "express";
 
 import { PrismaClient } from "@prisma/client";
 
+const cors = require('cors');
 const app = express();
 
+
 // This tells express to use JSON body
-app.use(express.json());
+app.use(cors());
+
 
 /**
  *  This is the prisma client, that will be used to connect to the database
@@ -19,7 +22,7 @@ const prisma = new PrismaClient({
  * Before the user can create a new card, he will need to login.
  * @param
  */
-app.get("/login", function (req, res) {
+app.get("/login", function (req, res, next) {
   return res.json({
     alert:
       "This will be displayed when the user clicks on the login button, or the card to add a new card",
@@ -31,9 +34,9 @@ app.get("/login", function (req, res) {
  *  Status(200) is the same as status(OK)
  *  @param
  */
-app.post("/cards", function (req, res) {
+app.post("/cards", function (req, res, next) {
   return res.status(200).json({
-    alert: "This is the route the user will be creating a new card",
+    msg: 'This is CORS-enabled for all origins!',
   });
 });
 
@@ -43,7 +46,7 @@ app.post("/cards", function (req, res) {
  *  Then the user will be able to edit the card, and save it.
  *  @param
  */
-app.get("/cards", async function (req, res) {
+app.get("/cards", async function (req, res, next) {
 
   // This selects all the suggested cards, related to the card that is being created
   const cards = await prisma.card.findMany({
@@ -66,7 +69,7 @@ app.get("/cards", async function (req, res) {
  *  Status(200) is the same as status(OK)
  *  @abstract
  */
-app.post("/cards/:id/suggested", async function (req, res) {
+app.post("/cards/:id/suggested", async function (req, res, next) {
 
   // This get the cardID from the URL
   const cardId = req.params.id;
@@ -97,7 +100,7 @@ app.post("/cards/:id/suggested", async function (req, res) {
  *  This function was created by chatGPT.
  *  @param {string} text - The text to be completed.
  */
-app.get("/cards/:id/suggested", async function (req, res) {
+app.get("/cards/:id/suggested", async function (req, res, next) {
 
   // This get the cardID from the URL
   const cardId = req.params.id;
