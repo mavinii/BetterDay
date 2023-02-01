@@ -19,11 +19,11 @@ import axios from "axios";
  */
 interface Card {
   id: number;
+  title: string;
+  description: string;
   cardAbout: string;
   createdAt: string;
   icon: string;
-  title: string;
-  description: string;
   userUrl: string;
   backgroundColor: string;
 }
@@ -56,7 +56,7 @@ function App() {
 
   // It is fetching the Suggested Cards Data from the API
   useEffect(() => {
-    axios(`http://localhost:3333/cards/1/suggested`).then(response => {
+    axios(`http://localhost:3333/suggested-cards`).then(response => {
       setSuggestedCards(response.data);
     });
   }, []);

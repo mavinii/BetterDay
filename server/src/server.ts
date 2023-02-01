@@ -1,7 +1,7 @@
 import express from "express";
 import cors from 'cors';
 
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { convertHrsStringToMin } from "./utils/convert-hrs-to-min";
 import { convertMinToHrs } from "./utils/convert-min-to-hrs";
 
@@ -40,192 +40,81 @@ app.get("/login", function (req, res, next) {
 /**
  *  This displays all the cards that the user created.
  */
-app.get("/games", async function (req, res, next) {
+app.get("/cards", async function (req, res, next) {
 
-  const games = await prisma.game.findMany({
+  const cards = await prisma.card.findMany({
     include: {
       _count: {
         select: {
-          ads: true,
+          suggestions: true,
         },
       },
     },
   });
 
-  return res.json(games);
-
-  // This selects all the suggested cards, related to the card that is being created
-  // const cards = await prisma.card.findMany({
-  //   include: {
-  //     _count: {
-  //       select: {
-  //         suggesteds: true,
-  //       },
-  //     },
-  //   },
-  // });
+  return res.json(cards);
 });
 
 
 
-/**
- *  This will be the card created by the user within the Form
- *  This will be sending the info to the database.
- */
-app.post("/game/:id/ads", async function (req, res, next) {
+// This is the route to create a new card
+app.post("/cards", async function(req, res, next){
 
-  // This get the cardID from the URL
-  const gameId = req.params.id;
+  const userId = req.body.userId;
 
-  // This is the body of the request
   const body: any = req.body;
 
-  // FIXME: Validate the body with zod -> https://github.com/colinhacks/zod or joi
-
-  // Creating the ads
-  const ad = await prisma.ad.create({
+  const card = await prisma.card.create({
     data: {
-      gameId,
+      userId: userId,
       title: body.title,
       description: body.description,
       weekDays: body.weekDays.join(','),
       hourStart: convertHrsStringToMin(body.hourStart),
       hourEnd: convertHrsStringToMin(body.hourEnd),
     }
-  })  
+  });
 
-  return res.status(201).json(ad);
+  return res.status(201).json(card);
+})
 
-});
+// Route to test
+app.post("/cards2", async function(req, res, next){
 
+  const body: any = req.body;
 
-/**
- *  This will be displaing all the suggested cards related to the card that is being created by the user.
- */
-app.get("/game/:id/ads", async function (req, res, next) {
+  const card2 = await prisma.card2.create({
+    data: {
+      title: body.title,
+      description: body.description,
+    }
+  });
 
-  const gameId = req.params.id;
+  return res.status(201).json(card2);
+})
 
-  const ads = await prisma.ad.findMany({
-    
-    // It will be the suggested cards, related to the card that is being created
+// This is the route to display all the cards suggested to the user by AI
+app.get("/suggested-cards", async function (req, res, next) {
+
+  // This selects all the suggested cards, related to the card that is being created
+  const suggested = await prisma.suggestedCard.findMany({
     select: {
       id: true,
       title: true,
       description: true,
-      weekDays: true,
-      hourStart: true,
-      hourEnd: true,
+      createdAt: true,
     },
-    where: {
-      gameId,
-    },
+    // where: {
+    //   cardId: cardIdNumber,
+    // },
     orderBy: {
-      createdAt: "desc",
-    }
-  });
+      createdAt: 'desc'
+    } 
+  });  
 
-  return res.json(ads.map(ad => {
-    return {
-      ...ad,
-      weekDays: ad.weekDays.split(','),
-      hourStart: convertMinToHrs(ad.hourStart),
-      hourEnd: convertMinToHrs(ad.hourEnd),
-    }
-  }));
-
-
-
-  // // This get the cardID from the URL
-  // const cardId = req.params.id;
-
-  // return res.json({
-  //   msg: 'Card created with id: ' + cardId,
-  // });
-
-  // // This get the cardID from the URL
-  // const cardId = req.params.id;
-
-  // // Converting cardId from string to number
-  // const cardIdNumber = parseInt(cardId);
-
-  // // All suggested cards related to the card that is being created by the user
-  // const suggested = await prisma.suggestedCard.findMany({
-
-  //   // Using Prisma: I can query the database using JavaScript by doing this:
-  //   select: {
-  //     id: true,
-  //     title: true,
-  //     subtitle: true,
-  //     backgroundImg: true,
-  //   },
-  //   where: {
-  //     cardId: cardIdNumber,
-  //   },
-  //   orderBy: {
-  //     createdAt: "desc",
-  //   },
-  // });
-
-  // return res.json(suggested);
+  return res.json(suggested);
 });
 
-
-
-/**
- *  Get a specific SUGGESTED CARD, based on the SUGGESTE CARD ID, getting the title and subtitle.
- *  Show this route when the user clicks on the suggested card button.
- */
-app.get("/ads/:id/discord", async function (req, res, next) {
-
-  // This get the cardID from the URL
-  const adId = req.params.id;
-
-  // This will get the card from the database or throw an error
-  const ad = await prisma.ad.findUniqueOrThrow({
-    select: {
-      title: true,
-      description: true,
-    },
-    where: {
-      id: adId,
-    },
-  });
-
-  return res.json({
-    title: ad.title,
-    description: ad.description,
-  });
-
-});
-
-
-
-/**
- *  This will be the card suggested by the AI, based on what the user typed.
- */
-// app.post("/cards/:id/suggested", async function (req, res, next) {
-
-//   // This get the cardID from the URL
-//   const cardId = req.params.id;
-
-//   // This is the body of the request
-//   const body: any = req.body;
-
-//   // Converting cardId from string to number
-//   const cardIdNumber = parseInt(cardId);
-
-//   const suggested = await prisma.suggestedCard.create({
-//     data: {
-//       cardId: cardIdNumber,
-//       title: body.title,
-//       subtitle: body.subtitle,
-//       backgroundImg: body.backgroundImg,
-//     },
-//   });
-
-//   return res.status(201).json(suggested);
-// });
 
 
 // starting server

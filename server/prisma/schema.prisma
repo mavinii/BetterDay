@@ -7,50 +7,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id        Int      @id
 
-//   name      String
-//   email     String   @unique
-//   password  String
+model User {
+  id        String    @id @default(uuid())
 
-//   ad     Ad[]
-// }
+  name      String
+  email     String    @unique
+  password  String
 
-model Game {
-  id        String      @id @default(uuid())
-
-  title     String
-  bannerUrl String
-
-  ads       Ad[] // One game can have many ads
+  // An user can have many cards
+  cards     Card[]
 }
 
-model Ad {
-  id          String    @id @default(uuid())
-  gameId      String
+
+model Card {
+  id          String      @id @default(uuid())
+  userId      String
 
   title       String
   description String
   weekDays    String
   hourStart   Int
   hourEnd     Int
-  createdAt   DateTime @default(now())
+  createdAt   DateTime    @default(now())
 
-  game        Game     @relation(fields: [gameId], references: [id])
-
-  // suggesteds  SuggestedCard[]
+  // but this card can only have one user
+  user        User        @relation(fields: [userId], references: [id])
+  
+  // this card can have many suggestions
+  suggestions SuggestedCard[]
 }
 
 
+model SuggestedCard {
+  id          String      @id @default(uuid())
+  cardId      String
 
-// This SuggestedCard model, will be suggested to the user based on the card he created
-// model SuggestedCard {
-//   id            Int      @id
-//   cardId        Int
+  title       String
+  description String
+  createdAt   DateTime    @default(now())
 
-//   title         String
-//   subtitle      String
+  // but this suggestions cards can only have one card
+  card        Card        @relation(fields: [cardId], references: [id])  
+}
 
-//   card          Card     @relation(fields: [cardId], references: [id])
-// }
+model Card2 {
+  id          String      @id @default(uuid())
+
+  title       String
+  description String
+}

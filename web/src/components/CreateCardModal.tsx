@@ -44,11 +44,11 @@ export function CreateCardModal() {
 
     // It is sending the data to the API
     try {
-      await axios.post("http://localhost:3333/cards", {
+      await axios.post("http://localhost:3333/cards2", {
         title: data.title,
         description: data.description,
-        hourStart: data.hourStart,
-        hourEnd: data.hourEnd,
+        // hourStart: data.hourStart,
+        // hourEnd: data.hourEnd,
       })
 
       console.log(data)
