@@ -7,49 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// This is my User model, the user who will creating the cards
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime?
+// model User {
+//   id        Int      @id
 
-  cards     Card[]
+//   name      String
+//   email     String   @unique
+//   password  String
+
+//   ad     Ad[]
+// }
+
+model Game {
+  id        String      @id @default(uuid())
+
+  title     String
+  bannerUrl String
+
+  ads       Ad[] // One game can have many ads
 }
 
-
-// This filds are the cards that the user will create, it is saved in the database
-model Card {
-  id          Int      @id @default(autoincrement())
-  userId      Int
+model Ad {
+  id          String    @id @default(uuid())
+  gameId      String
 
   title       String
   description String
-  goodOrBad   Boolean
+  weekDays    String
+  hourStart   Int
+  hourEnd     Int
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  deletedAt   DateTime?
-  user        User     @relation(fields: [userId], references: [id])
 
-  suggesteds  SuggestedCard[]
+  game        Game     @relation(fields: [gameId], references: [id])
+
+  // suggesteds  SuggestedCard[]
 }
 
 
 
 // This SuggestedCard model, will be suggested to the user based on the card he created
-model SuggestedCard {
-  id            Int      @id @default(autoincrement())
-  cardId        Int
+// model SuggestedCard {
+//   id            Int      @id
+//   cardId        Int
 
-  title         String
-  subtitle      String
-  backgroundImg String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  deletedAt     DateTime?
+//   title         String
+//   subtitle      String
 
-  card          Card     @relation(fields: [cardId], references: [id])
-}
+//   card          Card     @relation(fields: [cardId], references: [id])
+// }

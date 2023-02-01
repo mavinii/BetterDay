@@ -68,7 +68,6 @@ npx prisma studio
 - [NodeJS](https://nodejs.org/en/) - is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Express](https://expressjs.com/) - is a web application framework for Node.js.
 - [Typescript](https://www.typescriptlang.org/) - is a typed superset of JavaScript that compiles to plain JavaScript.
-- [@types/express](https://www.npmjs.com/package/@types/express) - is a TypeScript definition file for Express.
 - [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) - is a tool that helps develop Node.js applications with TypeScript.
 - [cors](https://www.npmjs.com/package/cors) - is a node.js package for protecting the API from other domains to access our API.
 - [Prisma](https://www.prisma.io/) - is an `Object-Relational Mapping (ORM)` open-source tool for Node.js and TypeScript. It makes it easy to query databases with TypeScript or JavaScript.
@@ -95,7 +94,7 @@ npx prisma studio
 
 ## 🚀 Database:
 
-  - [Node - SQLite3](https://www.npmjs.com/package/sqlite3) using Prisma.
+- [Node - SQLite3](https://www.npmjs.com/package/sqlite3) using Prisma.
 
 ## 🤝 References:
 ### Web:
