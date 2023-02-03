@@ -25,11 +25,11 @@ export function CreateCardModal() {
   const [agree, setAgree] = useState(false);
 
   // This axios is sending the data to the API form the user created
-  // useEffect(() => {
-  //   axios("http://localhost:3333/cards").then((response) => {
-  //     setCards(response.data);
-  //   })
-  // }, []);
+  useEffect(() => {
+    axios("http://localhost:3333/cards").then((response) => {
+      setCards(response.data);
+    })
+  }, []);
   
 
   // This function sends the data to the API the card the user created
@@ -44,7 +44,7 @@ export function CreateCardModal() {
 
     // It is sending the data to the API
     try {
-      await axios.post("http://localhost:3333/cards2", {
+      await axios.post("http://localhost:3333/cards", {
         title: data.title,
         description: data.description,
         weekDays: data.weekDays,

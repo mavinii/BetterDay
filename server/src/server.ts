@@ -43,12 +43,13 @@ app.get("/login", function (req, res, next) {
 app.get("/cards", async function (req, res, next) {
 
   const cards = await prisma.card.findMany({
-    include: {
-      _count: {
-        select: {
-          suggestions: true,
-        },
-      },
+    select: {
+      title: true,
+      description: true,
+      weekDays: true,
+      hourStart: true,
+      hourEnd: true,
+      createdAt: true,
     },
   });
 
@@ -58,18 +59,19 @@ app.get("/cards", async function (req, res, next) {
 
 
 // This is the route to create a new card
+// TODO: This is working, but the console.log is asking for a Key, check RocketSeat video;
 app.post("/cards", async function(req, res, next){
 
-  const userId = req.body.userId;
-
   const body: any = req.body;
+  const weekDays = typeof body.weekDays;
+
+  // userId: userId,
 
   const card = await prisma.card.create({
     data: {
-      userId: userId,
       title: body.title,
       description: body.description,
-      weekDays: body.weekDays.join(','),
+      weekDays,
       hourStart: convertHrsStringToMin(body.hourStart),
       hourEnd: convertHrsStringToMin(body.hourEnd),
     }
@@ -82,24 +84,24 @@ app.post("/cards", async function(req, res, next){
 // Route to test
 // FIXME: Weekdays are passed as undefined
 // CHECK THE PRISMIC DOCS how to create a new card related to a user id
-app.post("/cards2", async function(req, res, next){
+// app.post("/cards2", async function(req, res, next){
 
-  const body: any = req.body;
-  const weekDays = typeof body.weekDays;
-  // const weekDays = typeof body.weekDays === 'string' ? body.weekDays : body.weekDays.join(',');
+//   const body: any = req.body;
+//   const weekDays = typeof body.weekDays;
+//   // const weekDays = typeof body.weekDays === 'string' ? body.weekDays : body.weekDays.join(',');
 
-  const card2 = await prisma.card2.create({
-    data: {
-      title: body.title,
-      description: body.description,
-      weekDays,
-      hourStart: convertHrsStringToMin(body.hourStart),
-      hourEnd: convertHrsStringToMin(body.hourEnd),
-    }
-  });
+//   const card2 = await prisma.card2.create({
+//     data: {
+//       title: body.title,
+//       description: body.description,
+//       weekDays: body.weekDays.join(','),
+//       hourStart: convertHrsStringToMin(body.hourStart),
+//       hourEnd: convertHrsStringToMin(body.hourEnd),
+//     }
+//   });
 
-  return res.status(201).json(card2);
-})
+//   return res.status(201).json(card2);
+// })
 
 
 // This is the route to display all the cards suggested to the user by AI
