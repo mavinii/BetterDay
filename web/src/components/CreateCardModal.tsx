@@ -45,6 +45,7 @@ export function CreateCardModal() {
     // It is sending the data to the API
     try {
       await axios.post("http://localhost:3333/cards", {
+        id: data.id,
         title: data.title,
         description: data.description,
         weekDays: data.weekDays,

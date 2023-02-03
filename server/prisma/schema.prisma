@@ -34,7 +34,7 @@ model Card {
   // user        User        @relation(fields: [userId], references: [id])
   
   // // this card can have many suggestions
-  // suggestions SuggestedCard[]
+  suggestions SuggestedCard[]
 }
 
 
@@ -47,16 +47,5 @@ model SuggestedCard {
   createdAt   DateTime    @default(now())
 
   // but this suggestions cards can only have one card
-  // card        Card        @relation(fields: [cardId], references: [id])  
-}
-
-model Card2 {
-  id          String      @id @default(uuid())
-
-  title       String
-  description String
-  weekDays    String
-  hourStart   Int
-  hourEnd     Int
-  createdAt   DateTime    @default(now())
+  card        Card        @relation(fields: [cardId], references: [id])  
 }
