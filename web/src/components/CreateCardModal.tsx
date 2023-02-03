@@ -25,18 +25,18 @@ export function CreateCardModal() {
   const [agree, setAgree] = useState(false);
 
   // This axios is sending the data to the API form the user created
-  useEffect(() => {
-    axios("http://localhost:3333/cards").then((response) => {
-      setCards(response.data);
-    })
-  }, []);
+  // useEffect(() => {
+  //   axios("http://localhost:3333/cards").then((response) => {
+  //     setCards(response.data);
+  //   })
+  // }, []);
   
 
   // This function sends the data to the API the card the user created
   async function handleCreateCard(event: FormEvent) {
     
     // It prevents the page to reload
-    event.preventDefault(); 
+    // event.preventDefault();
 
     // It is getting the data from the form
     const formData = new FormData(event.currentTarget as HTMLFormElement);
@@ -47,8 +47,9 @@ export function CreateCardModal() {
       await axios.post("http://localhost:3333/cards2", {
         title: data.title,
         description: data.description,
-        // hourStart: data.hourStart,
-        // hourEnd: data.hourEnd,
+        weekDays: data.weekDays,
+        hourStart: data.hourStart,
+        hourEnd: data.hourEnd,
       })
 
       console.log(data)

@@ -56,4 +56,8 @@ model Card2 {
 
   title       String
   description String
+  weekDays    String
+  hourStart   Int
+  hourEnd     Int
+  createdAt   DateTime    @default(now())
 }

@@ -76,22 +76,31 @@ app.post("/cards", async function(req, res, next){
   });
 
   return res.status(201).json(card);
+  // console.log(card)
 })
 
 // Route to test
+// FIXME: Weekdays are passed as undefined
+// CHECK THE PRISMIC DOCS how to create a new card related to a user id
 app.post("/cards2", async function(req, res, next){
 
   const body: any = req.body;
+  const weekDays = typeof body.weekDays;
+  // const weekDays = typeof body.weekDays === 'string' ? body.weekDays : body.weekDays.join(',');
 
   const card2 = await prisma.card2.create({
     data: {
       title: body.title,
       description: body.description,
+      weekDays,
+      hourStart: convertHrsStringToMin(body.hourStart),
+      hourEnd: convertHrsStringToMin(body.hourEnd),
     }
   });
 
   return res.status(201).json(card2);
 })
+
 
 // This is the route to display all the cards suggested to the user by AI
 app.get("/suggested-cards", async function (req, res, next) {
@@ -114,7 +123,6 @@ app.get("/suggested-cards", async function (req, res, next) {
 
   return res.json(suggested);
 });
-
 
 
 // starting server

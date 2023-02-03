@@ -1,20 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Ad` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Game` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "Ad";
-PRAGMA foreign_keys=on;
-
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "Game";
-PRAGMA foreign_keys=on;
-
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
@@ -26,7 +9,6 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Card" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "suggestedId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -45,6 +27,17 @@ CREATE TABLE "SuggestedCard" (
     "description" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "SuggestedCard_cardId_fkey" FOREIGN KEY ("cardId") REFERENCES "Card" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Card2" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "weekDays" TEXT NOT NULL,
+    "hourStart" INTEGER NOT NULL,
+    "hourEnd" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateIndex
