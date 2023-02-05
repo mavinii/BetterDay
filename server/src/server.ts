@@ -5,14 +5,9 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { convertHrsStringToMin } from "./utils/convert-hrs-to-min";
 import { convertMinToHrs } from "./utils/convert-min-to-hrs";
 
-const app = express();
-
-// This is to allow the frontend to access the backend
-// change this in production like: { www.example.com }
-app.use(cors());
-
-// for parsing application/x-www-form-urlencoded
-app.use(express.json());
+const app = express();    // creating express app
+app.use(express.json());  // using json as body parser
+app.use(cors());          // using cors to allow the frontend to connect to the backend
 
 
 /**
@@ -22,7 +17,6 @@ app.use(express.json());
 const prisma = new PrismaClient({
   log: ["query"],
 });
-
 
 
 /**
@@ -47,8 +41,9 @@ app.get("/cards", async (req, res, next) => {
 });
 
 
-// This is the route to create a new card
-// TODO: This is working, but the console.log is asking for a Key, check RocketSeat video;
+/**
+ *  This is the route to create a new card
+ */ 
 app.post("/cards", async (req, res, next) => {
 
   const body: any = req.body;
@@ -72,9 +67,9 @@ app.post("/cards", async (req, res, next) => {
 
 
 /**
- * This is the route to display all the cards suggested to the user by AI
- * This function is using select to only display the data that is needed and 
- * orderBy to display the most recent first
+ *  This is the route to display all the cards suggested to the user by AI
+ *  This function is using select to only display the data that is needed and 
+ *  orderBy to display the most recent first
  */ 
 app.get("/suggested-cards", async (req, res, next) => {
 
@@ -96,8 +91,8 @@ app.get("/suggested-cards", async (req, res, next) => {
 
 
 /** TODO: It is working on Postman, but not on the frontend, yet!
- * This is the route when the user clicks on the suggested card button (know more)
- * This route will display (in a separeted screen?) the suggested card in more details
+ *  This is the route when the user clicks on the suggested card button (know more)
+ *  This route will display (in a separeted screen?) the suggested card in more details
  */
 app.get("/card/:id/suggested", async ( req, res, next ) => {
 
@@ -120,6 +115,7 @@ app.get("/card/:id/suggested", async ( req, res, next ) => {
     createdAt: suggestedCard.createdAt,
   });
 })
+
 
 // starting server
 app.listen(3333);

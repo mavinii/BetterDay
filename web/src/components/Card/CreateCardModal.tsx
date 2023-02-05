@@ -1,7 +1,6 @@
 import { useState, FormEvent, useEffect } from "react";
-import React from "react";
 
-import { Input } from "../components/Form/Input";
+import { Input } from "../Form/Input";
 import { MdCheck } from "react-icons/md";
 import axios from "axios";
 
@@ -17,6 +16,10 @@ interface Card {
   description: string;
 }
 
+/**
+ * Form to create a new card
+ * This the Form to create a new card, it appears when the user clicks on the button "Add"
+*/
 export function CreateCardModal() {
 
   // State for the week days with background color
@@ -61,8 +64,6 @@ export function CreateCardModal() {
       console.log(error)
       alert("Error while creating the card, try again!")
     }
-
-    // Maybe Ill use this later on the AI part, simitar to the API above
   }
 
   return (
