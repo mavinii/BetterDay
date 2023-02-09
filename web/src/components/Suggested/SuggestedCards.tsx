@@ -6,7 +6,11 @@ import CreateSuggested from './KnowMoreButton';
 /**
  * TODO: Create a function that the user can like the suggested cards
  * and save it in the database.
+<<<<<<< HEAD
  */
+=======
+ */ 
+>>>>>>> origin/master
 interface SuggestedCardsProps {
   cardAbout: string;
   title: string;

@@ -11,6 +11,10 @@ import CreateCard from "./components/Card/CreateCard";
 import axios from "axios";
 import { Hero } from "./components/Hero";
 import { CreateCardModal } from "./components/Card/CreateCardModal";
+<<<<<<< HEAD
+=======
+import KnowMoreModal from "./components/KnowMoreModal";
+>>>>>>> origin/master
 import CreateSuggested from "./components/Suggested/KnowMoreButton";
 import { CreateCardSuggested } from "./components/Suggested/KnowMoreSuggestedCard";
 
@@ -140,8 +144,12 @@ function App() {
             );
           })}
         </Dialog.Root>
+<<<<<<< HEAD
       </div>
 
+=======
+      </div>      
+>>>>>>> origin/master
     </div>
   );
 }
