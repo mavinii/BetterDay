@@ -5,12 +5,14 @@ import "./styles/main.css";
 import logoImage from "./assets/betterDay-logo.svg";
 
 // User Card and Suggested Cards by AI components
-import Cards from "./components/Cards";
-import SuggestedCards from "./components/SuggestedCards";
-import CreateCard from "./components/CreateCard";
-import { Hero } from "./components/Hero";
-import { CreateCardModal } from "./components/CreateCardModal";
+import Cards from "./components/Card/Cards";
+import SuggestedCards from "./components/Suggested/SuggestedCards";
+import CreateCard from "./components/Card/CreateCard";
 import axios from "axios";
+import { Hero } from "./components/Hero";
+import { CreateCardModal } from "./components/Card/CreateCardModal";
+import CreateSuggested from "./components/Suggested/KnowMoreButton";
+import { CreateCardSuggested } from "./components/Suggested/KnowMoreSuggestedCard";
 
 /**
  * These interfaces are used to define the type of data that will be used in the application
@@ -39,6 +41,11 @@ interface Suggested {
   backgroundColor: string;
 }
 
+/**
+ * This is the main component of the application
+ * It is responsible for fetching the data from the API and passing it to the components
+ * It is also responsible for rendering the components
+*/
 function App() {
 
   // It hands the list of Cards the user created
@@ -112,33 +119,29 @@ function App() {
         </p>
       </div>
 
-      {/* Suggested Cards by AI */}
+      {/* Suggested Cards by AI */}      
       <div className="grid grid-cols-4 gap-4 ">
-        {/* Using map that runs through the array */}
-        {suggestedCards.map((suggestedCard) => {
-          return (
-            <SuggestedCards
-              key={suggestedCard.id}
-              cardAbout={suggestedCard.cardAbout}
-              createdAt={suggestedCard.createdAt}
-              icon={suggestedCard.icon}
-              title={suggestedCard.title}
-              description={suggestedCard.description}
-              backgroundColor="#1E293B"
-            />
-          );
-        })}
 
-        {/* FIXME: SUGGESTED CARD EXAMPLE - DELETE IT LATER ON */}
-        <SuggestedCards
-          cardAbout="Meditation"
-          createdAt="26/01/2023"
-          icon="https://img.icons8.com/ios/50/000000/idea.png"
-          title="Hey, you should try meditation"
-          description="Meditation is a practice where an individual uses a technique ...."
-          backgroundColor="#1E293B"
-        />
+        <Dialog.Root>
+          <CreateCardSuggested />
+
+          {/* Using map that runs through the array */}
+          {suggestedCards.map((suggestedCard) => {
+            return (
+              <SuggestedCards
+                key={suggestedCard.id}
+                cardAbout={suggestedCard.cardAbout}
+                createdAt={suggestedCard.createdAt}
+                icon={suggestedCard.icon}
+                title={suggestedCard.title}
+                description={suggestedCard.description}
+                backgroundColor="#1E293B"
+              />
+            );
+          })}
+        </Dialog.Root>
       </div>
+
     </div>
   );
 }
