@@ -11,7 +11,6 @@ import CreateCard from "./components/Card/CreateCard";
 import axios from "axios";
 import { Hero } from "./components/Hero";
 import { CreateCardModal } from "./components/Card/CreateCardModal";
-import CreateSuggested from "./components/Suggested/KnowMoreButton";
 import { CreateCardSuggested } from "./components/Suggested/KnowMoreSuggestedCard";
 
 /**
