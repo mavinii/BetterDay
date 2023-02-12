@@ -12,7 +12,7 @@ import axios from "axios";
 import { Hero } from "./components/Hero";
 import { CreateCardModal } from "./components/Card/CreateCardModal";
 import { CreateCardSuggested } from "./components/Suggested/KnowMoreSuggestedCard";
-
+import Signin from "./components/Auth/SignIn";
 /**
  * These interfaces are used to define the type of data that will be used in the application
  * Also added <Card[]> and <Suggested[]> Because TypeScript will

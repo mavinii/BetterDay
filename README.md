@@ -62,6 +62,7 @@ npx prisma studio
 - [Radix-ui](https://www.radix-ui.com/) - Unstyled, accessible components for building high‑quality design systems and web apps in React.
 - [React Icons](https://react-icons.github.io/react-icons/icons?name=md) - is a library of icons for React.
 - [Axios](https://www.npmjs.com/package/axios) - helps us to make HTTP requests to our API using Node.
+- [Firebase](https://firebase.google.com/) - is a Backend as a Service (BaaS) developed by Firebase, Inc. in 2011, then acquired by Google in 2014.
 
 ## 🚀 Back-end:
 
@@ -102,6 +103,7 @@ npx prisma studio
 - [React Native Documentation](https://reactnative.dev/docs/environment-setup)
 - [Rocketseat Education](https://github.com/rocketseat-education)
 - [Tailwind CSS Team Cards](https://tailwindcomponents.com/component/upgrade-team)
+- [Authentication in Firebase](https://www.youtube.com/watch?v=Vv_Oi7zPPTw)
 
 ### Mobile:
 - [Expo Google Fonts](https://docs.expo.dev/guides/using-custom-fonts/)

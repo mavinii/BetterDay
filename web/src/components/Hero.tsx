@@ -1,4 +1,7 @@
 import { MdDoneAll, MdFactCheck, MdOutlineAddCircle, } from "react-icons/md";
+import AuthDetails from "./Auth/AuthDetails";
+import SignIn from "./Auth/SignIn";
+import SignUp from "./Auth/SignUp";
 
 export function Hero() {
   return (
@@ -87,7 +90,13 @@ export function Hero() {
                   </div>
                 </div>
               </li>
-            </ul>
+
+              {/* Sign in form */}
+              <SignIn />
+              <SignUp />
+              <AuthDetails />
+
+            </ul>            
           </div>
         </div>
       </div>
