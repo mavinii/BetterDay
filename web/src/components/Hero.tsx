@@ -1,9 +1,10 @@
+import { Dialog } from "@radix-ui/react-dialog";
 import { MdDoneAll, MdFactCheck, MdOutlineAddCircle, } from "react-icons/md";
 import AuthDetails from "./Auth/AuthDetails";
-import SignIn from "./Auth/SignIn";
-import SignUp from "./Auth/SignUp";
+import { SignIn } from "./Auth/SignIn";
+import { SignUp } from "./Auth/SignUp";
 
-export function Hero() {
+export default function Hero() {
   return (
     <section className="mb-10">
       <div className="container mx-auto px-4">
@@ -90,13 +91,7 @@ export function Hero() {
                   </div>
                 </div>
               </li>
-
-              {/* Sign in form */}
-              <SignIn />
-              <SignUp />
-              <AuthDetails />
-
-            </ul>            
+            </ul>
           </div>
         </div>
       </div>

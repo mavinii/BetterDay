@@ -4,15 +4,25 @@ import "./styles/main.css";
 
 import logoImage from "./assets/betterDay-logo.svg";
 
-// User Card and Suggested Cards by AI components
+// Navbar, Picture, Welcome title and buttons
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
+// Cards
 import Cards from "./components/Card/Cards";
-import SuggestedCards from "./components/Suggested/SuggestedCards";
 import CreateCard from "./components/Card/CreateCard";
-import axios from "axios";
-import { Hero } from "./components/Hero";
+import SuggestedCards from "./components/Suggested/SuggestedCards";
 import { CreateCardModal } from "./components/Card/CreateCardModal";
 import { CreateCardSuggested } from "./components/Suggested/KnowMoreSuggestedCard";
-import Signin from "./components/Auth/SignIn";
+
+// Fetching data from the API
+import axios from "axios";
+
+// Auth
+import SingInBtn from "./components/Auth/SingInBtn";
+import SingUpBtn from "./components/Auth/SignUpBtn";
+
+
 /**
  * These interfaces are used to define the type of data that will be used in the application
  * Also added <Card[]> and <Suggested[]> Because TypeScript will
@@ -70,7 +80,12 @@ function App() {
   return (
     <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
 
-      {/* Section Hero */}
+      {/* Top bar Navigation */}      
+      <Dialog.Root>
+        <Navbar />        
+      </Dialog.Root>
+
+      {/* Hero section, Sign in and register btn */}
       <Hero />
 
       {/* This is calling the component CreateCard and CreatedCardModal from compoments */}
