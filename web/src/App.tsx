@@ -5,7 +5,7 @@ import "./styles/main.css";
 import logoImage from "./assets/betterDay-logo.svg";
 
 // Navbar, Picture, Welcome title and buttons
-import Navbar from "./components/Navbar";
+import { Nav } from "./components/Navbar";
 import Hero from "./components/Hero";
 
 // Cards
@@ -17,10 +17,12 @@ import { CreateCardSuggested } from "./components/Suggested/KnowMoreSuggestedCar
 
 // Fetching data from the API
 import axios from "axios";
+import LoginButton from "./components/Auth/LoginButton";
+import RegisterButton from "./components/Auth/RegisterButton";
+import { SignIn } from "./components/Auth/SignIn";
+import { SignUp } from "./components/Auth/SignUp";
 
 // Auth
-import SingInBtn from "./components/Auth/SingInBtn";
-import SingUpBtn from "./components/Auth/SignUpBtn";
 
 
 /**
@@ -80,10 +82,8 @@ function App() {
   return (
     <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
 
-      {/* Top bar Navigation */}      
-      <Dialog.Root>
-        <Navbar />        
-      </Dialog.Root>
+      {/* Top bar Navigation */}
+      <Nav />
 
       {/* Hero section, Sign in and register btn */}
       <Hero />

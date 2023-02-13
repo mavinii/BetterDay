@@ -5,14 +5,15 @@ import { Input } from "../Form/Input";
 
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
+import RegisterButton from "./RegisterButton";
 
 export function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   // Function to handle the login
-  const handleSignUp = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleSignUp = () => {
+    // e.preventDefault();
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

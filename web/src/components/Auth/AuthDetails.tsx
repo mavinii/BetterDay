@@ -4,7 +4,9 @@ import { auth } from '../../../firebase/firebaseConfig'
 
 // This function is used to get the current user
 const AuthDetails = () => {
-    const [authUser, setAuthUser] = useState(null)
+    // const [authUser, setAuthUser] = useState(null)
+    const [authUser, setAuthUser] = useState<{ email: string } | null>(null)
+
 
     useEffect(() => {
         const linsten = onAuthStateChanged(auth, (user) => {

@@ -5,6 +5,7 @@ import { Input } from "../Form/Input";
 
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
+import LoginButton from "./LoginButton";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -17,11 +18,6 @@ export function SignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
-
-        // const user = userCredential.user;
-
-        // Signed in
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
