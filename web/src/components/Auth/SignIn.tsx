@@ -5,25 +5,31 @@ import { Input } from "../Form/Input";
 
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
-import LoginButton from "./LoginButton";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Function to reload the page after login
+  function refr() {
+    window.location.reload();
+  }
+
   // Function to handle the login
-  const handleSignIn = (e: { preventDefault: () => void }) => {
+  const handleSignIn = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
+    try{
+      await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        alert('Signed in successfully')
         console.log(userCredential);
+        refr();
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    } 
+    catch(e) {
+      console.log(`Error: ${e}`);
+    }
   };
 
   return (

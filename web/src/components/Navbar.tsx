@@ -1,5 +1,6 @@
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
+import AuthDetails from "./Auth/AuthDetails";
 import LoginButton from "./Auth/LoginButton";
 import RegisterButton from "./Auth/RegisterButton";
 
@@ -33,6 +34,7 @@ export function Nav() {
               <RegisterButton />
             </div>
           </Dialog.Root>
+          <AuthDetails />
         </div>
       </nav>
     </div>

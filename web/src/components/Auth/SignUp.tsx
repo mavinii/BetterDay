@@ -5,24 +5,25 @@ import { Input } from "../Form/Input";
 
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
-import RegisterButton from "./RegisterButton";
 
 export function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Function to reload the page after login
+  function refr() {
+    window.location.reload();
+  }
+
   // Function to handle the login
-  const handleSignUp = () => {
-    // e.preventDefault();
+  const handleSignUp = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        alert('User created successfully')
         console.log(userCredential);
-
-        // const user = userCredential.user;
-
-        // Signed in
-        // ...
+        refr();
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -46,11 +47,11 @@ export function SignUp() {
         <form onSubmit={handleSignUp}>
           <div className="mt-7 flex flex-col">
             <label htmlFor="title" className="text-xl font-semibold">
-              Log in:
+              Enter your email:
             </label>
             <Input
               type="email"
-              placeholder="Email"
+              placeholder="example@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -59,7 +60,7 @@ export function SignUp() {
 
           <div className="mt-3 flex flex-col">
             <label htmlFor="title" className="text-xl font-semibold">
-              Password:
+              Enter yout password:
             </label>
             <Input
               type="password"
@@ -80,3 +81,4 @@ export function SignUp() {
     </Dialog.Portal>
   );
 }
+
