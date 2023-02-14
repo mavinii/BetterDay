@@ -4,13 +4,8 @@ import { auth } from "../../../firebase/firebaseConfig";
 
 // This function is used to get the current user
 const AuthDetails = () => {
-  // const [authUser, setAuthUser] = useState(null)
-  const [authUser, setAuthUser] = useState<{ email: string } | null>(null);
-
-  // Function to reload the page after login
-  function refr() {
-    window.location.reload();
-  }
+  const [authUser, setAuthUser] = useState<{ email: string | null } | null>(null);
+  
 
   useEffect(() => {
     const linsten = onAuthStateChanged(auth, (user) => {
@@ -31,7 +26,7 @@ const AuthDetails = () => {
       .then(() => {
         alert("Sign Out successfully");
         console.log("Sign Out successfully");
-        refr();
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -42,8 +37,10 @@ const AuthDetails = () => {
       {/* TODO: Should I do the same the check if the user is connected before creating a card? */}
       {authUser ? (
         <>
-          <p> {`Hi, ${authUser.email}`}</p>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <p className="flex "> {`Hi, ${authUser.email}`}</p>
+          <button
+          className="w-full bg-red-500 rounded text-white hover:bg-red-700 text-center" 
+          onClick={handleSignOut}>Sign Out</button>
         </>
       ) : (
         <p></p>

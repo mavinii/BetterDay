@@ -10,11 +10,6 @@ export function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Function to reload the page after login
-  function refr() {
-    window.location.reload();
-  }
-
   // Function to handle the login
   const handleSignUp = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -23,7 +18,7 @@ export function SignUp() {
       .then((userCredential) => {
         alert('User created successfully')
         console.log(userCredential);
-        refr();
+        window.location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -60,7 +55,7 @@ export function SignUp() {
 
           <div className="mt-3 flex flex-col">
             <label htmlFor="title" className="text-xl font-semibold">
-              Enter yout password:
+              Enter your password:
             </label>
             <Input
               type="password"

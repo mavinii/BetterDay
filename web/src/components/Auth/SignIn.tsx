@@ -10,11 +10,6 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Function to reload the page after login
-  function refr() {
-    window.location.reload();
-  }
-
   // Function to handle the login
   const handleSignIn = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -24,7 +19,7 @@ export function SignIn() {
       .then((userCredential) => {
         alert('Signed in successfully')
         console.log(userCredential);
-        refr();
+        window.location.reload();
       })
     } 
     catch(e) {

@@ -1,8 +1,4 @@
-import { Dialog } from "@radix-ui/react-dialog";
 import { MdDoneAll, MdFactCheck, MdOutlineAddCircle, } from "react-icons/md";
-import AuthDetails from "./Auth/AuthDetails";
-import { SignIn } from "./Auth/SignIn";
-import { SignUp } from "./Auth/SignUp";
 
 export default function Hero() {
   return (
