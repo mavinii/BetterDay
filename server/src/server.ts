@@ -9,7 +9,6 @@ const app = express();    // creating express app
 app.use(express.json());  // using json as body parser
 app.use(cors());          // using cors to allow the frontend to connect to the backend
 
-
 /**
  *  This is the prisma client, that will be used to connect to the database
  *  The log is to show the queries in the console, so we can see what is happening
@@ -17,18 +16,6 @@ app.use(cors());          // using cors to allow the frontend to connect to the 
 const prisma = new PrismaClient({
   log: ["query"],
 });
-
-
-/**
- *  Before the user can create a card, they will need to login.
- */
-app.get("/login", (req, res, next) => {
-  return res.json({
-    alert:
-      "This will be displayed when the user clicks on the login button, or the card to add a new card",
-  });
-});
-
 
 /**
  *  This displays all the cards that the user created.
@@ -40,19 +27,42 @@ app.get("/cards", async (req, res, next) => {
   return res.json(cards);
 });
 
+/**
+ *  TODO: Parei aqui
+ *  This create the user with user.uid, name and email
+ */
+app.post("/user/:id", async (req, res, next) => {
+
+  const userId = req.params.id;
+  const body: any = req.body;
+
+  const user = await prisma.user.create({
+    data: {
+      id: userId,
+      name: body.name,
+      email: body.email,
+    }
+  });
+
+  return res.status(201).json(user);
+  
+});
+
+
 
 /**
  *  This is the route to create a new card
  */ 
 app.post("/cards", async (req, res, next) => {
 
+  const userId = req.body.userId;
   const body: any = req.body;
   const weekDays = typeof body.weekDays;
 
-  // userId: userId,
-
+  // This creates a new card, related to the user that is logged in
   const cards = await prisma.card.create({
     data: {
+      userId: userId,
       title: body.title,
       description: body.description,
       weekDays,

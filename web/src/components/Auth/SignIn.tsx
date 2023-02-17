@@ -6,6 +6,7 @@ import { Input } from "../Form/Input";
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
 
+// Sign in form
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

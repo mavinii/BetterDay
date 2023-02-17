@@ -28,7 +28,8 @@ export function CreateCardSuggested() {
   
   // It is fetching the Suggested Cards Data from the API
   useEffect(() => {
-    axios(`http://localhost:3333/suggested-cards`).then(response => {
+    axios(`http://localhost:3333/suggested-cards`)
+    .then(response => {
       setSuggestedCards(response.data);
     });
   }, []);
