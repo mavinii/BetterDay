@@ -9,16 +9,16 @@ datasource db {
 
 
 model User {
-  id        String    @unique
+  id        String    @id
   name      String
   email     String    @unique
 
-  // cards     Card[]
+  cards     Card[]
 }
 
 
 model Card {
-  id          String      @id @default(uuid())
+  cardId      String      @id @default(uuid())
   userId      String
 
   title       String
@@ -29,7 +29,7 @@ model Card {
   createdAt   DateTime    @default(now())
 
   // but this card can only have one user
-  // user        User        @relation(fields: [userId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
   
   // // this card can have many suggestions
   suggestions SuggestedCard[]
@@ -45,5 +45,5 @@ model SuggestedCard {
   createdAt   DateTime    @default(now())
 
   // but this suggestions cards can only have one card
-  card        Card        @relation(fields: [cardId], references: [id])
+  card        Card        @relation(fields: [cardId], references: [cardId])
 }

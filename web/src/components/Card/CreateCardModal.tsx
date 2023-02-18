@@ -9,12 +9,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from '@radix-ui/react-checkbox';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
-// interdace for the card
-interface Card {
-  id: number;
-  title: string;
-  description: string;
-}
+// Firebase
+import { auth } from "../../../firebase/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 /**
  * Form to create a new card
@@ -23,15 +20,20 @@ interface Card {
 export function CreateCardModal() {
 
   // State for the week days with background color
-  const [cards, setCards] = useState<Card[]>([]);
   const [weekDays, setweekDays] = useState<string[]>([]);
   const [agree, setAgree] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
 
-  // This axios is sending the data to the API form the user created
+  // this is responsable for holding the user id in the state
   useEffect(() => {
-    axios("http://localhost:3333/cards").then((response) => {
-      setCards(response.data);
-    })
+    const unsubscribe = onAuthStateChanged(auth, (user: any) => {
+      if (user) {
+        setAuthUser(user.uid);
+      } else {
+        setAuthUser(null);
+      }
+    });
+    return unsubscribe;
   }, []);
   
 
@@ -45,10 +47,9 @@ export function CreateCardModal() {
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = Object.fromEntries(formData)
 
-    // It is sending the data to the API
+    // It is sending the data to the API (create-card/id) to be salved in the database
     try {
-      await axios.post("http://localhost:3333/cards", {
-        id: data.id,
+      await axios.post(`http://localhost:3333/create-card/${authUser}`, {
         title: data.title,
         description: data.description,
         weekDays: data.weekDays,

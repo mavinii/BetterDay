@@ -7,6 +7,7 @@ import React from "react";
  * and it is coming from the database (schema.prisma)
  */
 interface CardsProps {
+  key: number;
   cardAbout: string;
   title: string;
   description: string;

@@ -20,7 +20,7 @@ const prisma = new PrismaClient({
 /**
  *  This displays all the cards that the user created.
  */
-app.get("/cards", async (req, res, next) => {
+app.get("/cards/:id", async (req, res) => {
 
   // This selects all the cards, related to the user that is logged in
   const cards = await prisma.card.findMany();
@@ -28,10 +28,9 @@ app.get("/cards", async (req, res, next) => {
 });
 
 /**
- *  TODO: Parei aqui
  *  This create the user with user.uid, name and email
  */
-app.post("/user/:id", async (req, res, next) => {
+app.post("/user/:id", async (req, res) => {
 
   const userId = req.params.id;
   const body: any = req.body;
@@ -44,23 +43,21 @@ app.post("/user/:id", async (req, res, next) => {
     }
   });
 
-  return res.status(201).json(user);
-  
+  return res.status(201).json(user);  
 });
-
 
 
 /**
  *  This is the route to create a new card
+ *  TODO: FIX THE ID unique "key" prop.
  */ 
-app.post("/cards", async (req, res, next) => {
+app.post("/create-card/:id", async (req, res) => {
 
-  const userId = req.body.userId;
+  const userId: any = req.params.id;
   const body: any = req.body;
   const weekDays = typeof body.weekDays;
 
-  // This creates a new card, related to the user that is logged in
-  const cards = await prisma.card.create({
+  const createCard = await prisma.card.create({
     data: {
       userId: userId,
       title: body.title,
@@ -71,7 +68,7 @@ app.post("/cards", async (req, res, next) => {
     }
   });
 
-  return res.status(201).json(cards);
+  return res.status(201).json(createCard);
   // console.log(card)
 })
 
@@ -81,7 +78,7 @@ app.post("/cards", async (req, res, next) => {
  *  This function is using select to only display the data that is needed and 
  *  orderBy to display the most recent first
  */ 
-app.get("/suggested-cards", async (req, res, next) => {
+app.get("/suggested-cards", async (req, res) => {
 
   // This selects all the suggested cards, related to the card that is being created
   const suggested = await prisma.suggestedCard.findMany({
@@ -104,7 +101,7 @@ app.get("/suggested-cards", async (req, res, next) => {
  *  This is the route when the user clicks on the suggested card button (know more)
  *  This route will display (in a separeted screen?) the suggested card in more details
  */
-app.get("/card/:id/suggested", async ( req, res, next ) => {
+app.get("/card/:id/suggested", async ( req, res) => {
 
   const suggestedId = req.params.id;
 
