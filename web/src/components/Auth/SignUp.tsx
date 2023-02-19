@@ -20,7 +20,7 @@ export function SignUp() {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
 
-        alert(`Welcome user name goes here!`);
+        alert(`Welcome, please login now.`);
         
         console.log(`User created: ${userCredential.user.email}`);
         

@@ -13,14 +13,14 @@ interface CardsProps {
   description: string;
   createdAt: string;
   icon: string;
-  userUrl: string;
+  // userUrl: string;
   backgroundColor: string;
 }
 
 export default class Cards extends React.Component<CardsProps> {
   render() {
     const { backgroundColor } = this.props;
-    const userUrl = "https://thispersondoesnotexist.com/image";
+    // const userUrl = "https://thispersondoesnotexist.com/image";
 
     return (
       <div 
@@ -66,7 +66,7 @@ export default class Cards extends React.Component<CardsProps> {
               <a href="#" className="inline-block -m-1">
                 <img
                   className="w-7 h-7 rounded-full ring-2 ring-white"
-                  src={userUrl}
+                  // src={this.props.userUrl}
                   alt="user picture"
                 />
               </a>
