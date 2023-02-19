@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Cards from "./Cards";
+
+// Firebase
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
-import Cards from "./Cards";
 
 interface Card {
   id: number;
@@ -36,7 +38,6 @@ export default function CardModel() {
 
 
 
-  // TODO: It should display cards only if the user is logged in
   // It is fetching the Cards Data from the API
   useEffect(() => {
     axios(`http://localhost:3333/cards/:id`).then((response) => {

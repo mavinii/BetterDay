@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import axios from "axios";
 import { CreateCardSuggested } from "./KnowMoreSuggestedCard";
 import SuggestedCards from "./SuggestedCards";
+
+// Firebase
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebase/firebaseConfig";
 
 interface Suggested {
   id: number;
@@ -16,9 +20,24 @@ interface Suggested {
 }
 
 export default function SuggestedCardModel() {
-    
   // It hands the list of Suggested Cards by AI, based in the user created
   const [suggestedCards, setSuggestedCards] = React.useState<Suggested[]>([]);
+  const [authUser, setAuthUser] = useState<{ email: string | null } | null>(
+    null
+  );
+
+  // This holds the state of the modal, to see if the user is signed in or not
+  useEffect(() => {
+    const linsten = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(user);
+      } else {
+        setAuthUser(null);
+      }
+    });
+
+    return () => linsten();
+  }, []);
 
   // It is fetching the Suggested Cards Data from the API
   useEffect(() => {
@@ -31,29 +50,34 @@ export default function SuggestedCardModel() {
     <div className="grid grid-cols-4 gap-4">
       <Dialog.Root>
         <CreateCardSuggested />
-
-        {suggestedCards.map((suggestedCard) => {
-          return (
+        {authUser ? (
+          <>
+            {suggestedCards.map((suggestedCard) => {
+              return (
+                <SuggestedCards
+                  key={suggestedCard.id}
+                  cardAbout={suggestedCard.cardAbout}
+                  createdAt={suggestedCard.createdAt}
+                  icon={suggestedCard.icon}
+                  title={suggestedCard.title}
+                  description={suggestedCard.description}
+                  backgroundColor="#1E293B"
+                />
+              );
+            })}
+          </>
+        ) : (
+          <>
             <SuggestedCards
-              key={suggestedCard.id}
-              cardAbout={suggestedCard.cardAbout}
-              createdAt={suggestedCard.createdAt}
-              icon={suggestedCard.icon}
-              title={suggestedCard.title}
-              description={suggestedCard.description}
+              cardAbout="Meditation"
+              createdAt="26/01/2023"
+              icon="https://img.icons8.com/ios/50/000000/idea.png"
+              title="It's okay to feel overwhelmed at times."
+              description="This is the example how the user card should look like."
               backgroundColor="#1E293B"
             />
-          );
-        })}
-
-        <SuggestedCards
-          cardAbout="Meditation"
-          createdAt="26/01/2023"
-          icon="https://img.icons8.com/ios/50/000000/idea.png"
-          title="It's okay to feel overwhelmed at times."
-          description="This is the example how the user card should look like."
-          backgroundColor="#1E293B"
-        />
+          </>
+        )}
       </Dialog.Root>
     </div>
   );
