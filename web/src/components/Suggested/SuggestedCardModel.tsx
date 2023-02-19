@@ -1,0 +1,60 @@
+import React, { useEffect } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import axios from "axios";
+import { CreateCardSuggested } from "./KnowMoreSuggestedCard";
+import SuggestedCards from "./SuggestedCards";
+
+interface Suggested {
+  id: number;
+  cardAbout: string;
+  createdAt: string;
+  icon: string;
+  title: string;
+  description: string;
+  userUrl: string;
+  backgroundColor: string;
+}
+
+export default function SuggestedCardModel() {
+    
+  // It hands the list of Suggested Cards by AI, based in the user created
+  const [suggestedCards, setSuggestedCards] = React.useState<Suggested[]>([]);
+
+  // It is fetching the Suggested Cards Data from the API
+  useEffect(() => {
+    axios(`http://localhost:3333/suggested-cards`).then((response) => {
+      setSuggestedCards(response.data);
+    });
+  }, []);
+
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      <Dialog.Root>
+        <CreateCardSuggested />
+
+        {suggestedCards.map((suggestedCard) => {
+          return (
+            <SuggestedCards
+              key={suggestedCard.id}
+              cardAbout={suggestedCard.cardAbout}
+              createdAt={suggestedCard.createdAt}
+              icon={suggestedCard.icon}
+              title={suggestedCard.title}
+              description={suggestedCard.description}
+              backgroundColor="#1E293B"
+            />
+          );
+        })}
+
+        <SuggestedCards
+          cardAbout="Meditation"
+          createdAt="26/01/2023"
+          icon="https://img.icons8.com/ios/50/000000/idea.png"
+          title="It's okay to feel overwhelmed at times."
+          description="This is the example how the user card should look like."
+          backgroundColor="#1E293B"
+        />
+      </Dialog.Root>
+    </div>
+  );
+}

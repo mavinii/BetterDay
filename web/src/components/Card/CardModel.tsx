@@ -1,6 +1,6 @@
 import axios from "axios";
-import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
 import Cards from "./Cards";
 
@@ -21,7 +21,7 @@ export default function CardModel() {
   const [cards, setCards] = React.useState<Card[]>([]);
   const [authUser, setAuthUser] = useState<{ email: string | null } | null>(null);
 
-  // TODO: PAREI AQUI, AONDE EU CHECO SE O USER IS SIGNED IN TO DISPLAY THE CARD
+  // This holds the state of the modal, to see if the user is signed in or not
   useEffect(() => {
     const linsten = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -45,11 +45,13 @@ export default function CardModel() {
   }, []);
 
   return (
+
+    // It checks if the user is logged in to display the cards
     <div className="grid grid-cols-3 gap-6 mb-8">
 
       {authUser ? (
         <>
-          {/* Using map that runs through the array */}
+          {/* It displays the card the user will be creating */}
           {cards.map((card) => {
             return (
               <Cards
@@ -74,8 +76,8 @@ export default function CardModel() {
           cardAbout="#Example"
           createdAt="15/11/2022"
           icon="https://img.icons8.com/ios/50/000000/idea.png"
-          title="Hey, I'm a card example."
-          description="This the the example how the card should look like."
+          title="Feeling overwhelmed and down today."
+          description="This is the example how the user card should look like."
           // userUrl="https://thispersondoesnotexist.com/image"
           backgroundColor="#EB5757"
         />
