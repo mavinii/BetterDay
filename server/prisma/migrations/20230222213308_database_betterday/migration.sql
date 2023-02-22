@@ -21,11 +21,11 @@ CREATE TABLE "Card" (
 -- CreateTable
 CREATE TABLE "SuggestedCard" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "cardId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "SuggestedCard_cardId_fkey" FOREIGN KEY ("cardId") REFERENCES "Card" ("cardId") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "SuggestedCard_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex

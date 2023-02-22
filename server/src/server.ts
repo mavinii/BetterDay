@@ -32,7 +32,7 @@ app.get("/cards/:id", async (req, res) => {
  */
 app.post("/user/:id", async (req, res) => {
 
-  const userId = req.params.id;
+  const userId: any = req.params.id;
   const body: any = req.body;
 
   const user = await prisma.user.create({
@@ -71,6 +71,22 @@ app.post("/create-card/:id", async (req, res) => {
   return res.status(201).json(createCard);
   // console.log(card)
 })
+
+app.post("/create-suggested-card/:id", async (req, res) => {
+  
+    const userId: any = req.params.id;
+    const body: any = req.body;
+  
+    const createSuggestedCard = await prisma.suggestedCard.create({
+      data: {
+        userId: userId,
+        title: body.title,
+        description: body.description,
+      }
+    });
+  
+    return res.status(201).json(createSuggestedCard);
+});
 
 
 /**

@@ -49,6 +49,7 @@ export function CreateCardModal() {
 
     // It is sending the data to the API (create-card/id) to be salved in the database
     try {
+      
       await axios.post(`http://localhost:3333/create-card/${authUser}`, {
         title: data.title,
         description: data.description,
@@ -59,13 +60,45 @@ export function CreateCardModal() {
 
       console.log(data)
       alert("Card created successfully!")
+
+      handleCreateSuggestedCard()
     
     } catch (error) {
 
       console.log(error)
       alert("Error while creating the card, try again!")
     }
+
+    async function handleCreateSuggestedCard() {
+      try {
+        await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
+        title: data.title,
+        description: data.description,
+      })
+  
+        console.log(data)
+        alert("Card created successfully!")
+  
+      } catch (error) {
+  
+        console.log(error)
+        alert("Error while creating the card, try again!")
+      }
+
+    }   
+      
   }
+
+  // async function createSuggesteCard(event: FormEvent) {
+
+  //   const data = Object.fromEntries(formData)
+
+  //   await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
+  //     id: data.id,
+  //     title: data.title,
+  //     description: data.description,
+  //   })
+  // }
 
   return (
     <Dialog.Portal>
@@ -243,3 +276,4 @@ export function CreateCardModal() {
     </Dialog.Portal>
   );
 }
+
