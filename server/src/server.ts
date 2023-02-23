@@ -5,6 +5,15 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { convertHrsStringToMin } from "./utils/convert-hrs-to-min";
 import { convertMinToHrs } from "./utils/convert-min-to-hrs";
 
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey:"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",
+});
+
+const openai = new OpenAIApi(configuration);
+
+
 const app = express();    // creating express app
 app.use(express.json());  // using json as body parser
 app.use(cors());          // using cors to allow the frontend to connect to the backend
@@ -72,20 +81,33 @@ app.post("/create-card/:id", async (req, res) => {
   // console.log(card)
 })
 
-app.post("/create-suggested-card/:id", async (req, res) => {
+app.post("/create-suggested-card", async (req, res) => {
   
-    const userId: any = req.params.id;
+    // const userId: any = req.params.id;
     const body: any = req.body;
+    const { prompt} = req.body;
+    // const { prompt } = req.body;
   
-    const createSuggestedCard = await prisma.suggestedCard.create({
-      data: {
-        userId: userId,
-        title: body.title,
-        description: body.description,
-      }
+    // const createSuggestedCard = await prisma.suggestedCard.create({
+    //   data: {
+    //     userId: userId,
+    //     title: body.title,
+    //     description: body.description,
+    //   }
+    // });
+
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: prompt,
+      temperature: 0.7,
+      max_tokens: 128,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
     });
   
-    return res.status(201).json(createSuggestedCard);
+    // console.log(response.data.choices[0].text);
+    return res.status(201).json(response.data.choices[0].text);
 });
 
 

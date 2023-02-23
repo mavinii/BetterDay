@@ -20,14 +20,11 @@ export function SignUp() {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
 
-        alert(`Welcome, please login now.`);
-        
-        console.log(`User created: ${userCredential.user.email}`);
-        
         createUserInDatabase(userCredential.user.uid);
+        console.log(`User created: ${userCredential.user.email}`);        
 
         // Once the user is created, we reload the page to show the new user
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -38,15 +35,16 @@ export function SignUp() {
 
   // This function saves the user.uid, name and email in the database using axions, the user.uid is generate by firebase
   async function createUserInDatabase(uid: string) {
-    try {
       await axios.post(`http://localhost:3333/user/${uid}`, {
-        uid: uid,
         name: name,
         email: email,
+      })
+      .then(() => {
+        console.log("User created in the database");
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   return (

@@ -24,6 +24,9 @@ export function CreateCardModal() {
   const [agree, setAgree] = useState(false);
   const [authUser, setAuthUser] = useState(null);
 
+  const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState({});
+
   // this is responsable for holding the user id in the state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user: any) => {
@@ -41,64 +44,68 @@ export function CreateCardModal() {
   async function handleCreateCard(event: FormEvent) {
     
     // It prevents the page to reload
-    // event.preventDefault();
+    event.preventDefault();
 
     // It is getting the data from the form
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = Object.fromEntries(formData)
 
     // It is sending the data to the API (create-card/id) to be salved in the database
-    try {
-      
-      await axios.post(`http://localhost:3333/create-card/${authUser}`, {
-        title: data.title,
-        description: data.description,
-        weekDays: data.weekDays,
-        hourStart: data.hourStart,
-        hourEnd: data.hourEnd,
-      })
-
-      console.log(data)
-      alert("Card created successfully!")
-
-      handleCreateSuggestedCard()
     
-    } catch (error) {
+    // try {
+    //   await axios.post(`http://localhost:3333/create-card/${authUser}`, {
+    //     title: data.title,
+    //     description: data.description,
+    //     weekDays: data.weekDays,
+    //     hourStart: data.hourStart,
+    //     hourEnd: data.hourEnd,
+    //   })
 
-      console.log(error)
+    //   console.log(data)
+    //   alert("Card created successfully!")
+      // createSuggestionsCard()
+    
+    // } catch (error) {
+
+    //   console.log(error)
+    //   alert("Error while creating the card, try again!")
+    // }
+
+  // const createSuggestionsCard = async () => {
+    await axios.post(`http://localhost:3333/create-card/${authUser}`, {
+      title: data.title,
+      description: data.description,
+      weekDays: data.weekDays,
+      hourStart: data.hourStart,
+      hourEnd: data.hourEnd,
+    })
+    .then((response) => {
+      setResponse(response.data);
+      console.log(response.data);
+      alert("Card created successfully!")
+    })
+    .catch((err) => {
+      console.log(err)
       alert("Error while creating the card, try again!")
-    }
-
-    async function handleCreateSuggestedCard() {
-      try {
-        await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
-        title: data.title,
-        description: data.description,
-      })
-  
-        console.log(data)
-        alert("Card created successfully!")
-  
-      } catch (error) {
-  
-        console.log(error)
-        alert("Error while creating the card, try again!")
-      }
-
-    }   
-      
+    })
+    
+    handleCreateSuggestedCard(response)    
   }
 
-  // async function createSuggesteCard(event: FormEvent) {
+  const handleCreateSuggestedCard = async (response: any) => {
+    await axios.post(`http://localhost:3333/create-suggested-card/`, {
+      // check what is inside response.title/ response.description
+      prompt: response.title + " " + response.description + "How can I improve it?",
+  })
+  .then((response) => {
+    // SETSUUGESTEDRESPONSE(response.data);
+    console.log(response.data);
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
 
-  //   const data = Object.fromEntries(formData)
-
-  //   await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
-  //     id: data.id,
-  //     title: data.title,
-  //     description: data.description,
-  //   })
-  // }
 
   return (
     <Dialog.Portal>
