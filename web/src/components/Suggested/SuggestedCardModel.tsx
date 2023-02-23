@@ -20,6 +20,7 @@ interface Suggested {
 }
 
 export default function SuggestedCardModel() {
+  
   // It hands the list of Suggested Cards by AI, based in the user created
   const [suggestedCards, setSuggestedCards] = React.useState<Suggested[]>([]);
   const [authUser, setAuthUser] = useState<{ email: string | null } | null>(
@@ -41,7 +42,7 @@ export default function SuggestedCardModel() {
 
   // It is fetching the Suggested Cards Data from the API
   useEffect(() => {
-    axios(`http://localhost:3333/suggested-cards`).then((response) => {
+    axios(`http://localhost:3333/suggested-cards/`).then((response) => {
       setSuggestedCards(response.data);
     });
   }, []);

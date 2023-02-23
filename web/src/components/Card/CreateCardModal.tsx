@@ -6,8 +6,8 @@ import axios from "axios";
 
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
-import * as Checkbox from '@radix-ui/react-checkbox';
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import * as Checkbox from "@radix-ui/react-checkbox";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 // Firebase
 import { auth } from "../../../firebase/firebaseConfig";
@@ -16,9 +16,8 @@ import { onAuthStateChanged } from "firebase/auth";
 /**
  * Form to create a new card
  * This the Form to create a new card, it appears when the user clicks on the button "Add"
-*/
+ */
 export function CreateCardModal() {
-
   // State for the week days with background color
   const [weekDays, setweekDays] = useState<string[]>([]);
   const [agree, setAgree] = useState(false);
@@ -38,7 +37,6 @@ export function CreateCardModal() {
     });
     return unsubscribe;
   }, []);
-  
 
   // This function sends the data to the API the card the user created
   async function handleCreateCard(event: FormEvent) {
@@ -47,65 +45,53 @@ export function CreateCardModal() {
     event.preventDefault();
 
     // It is getting the data from the form
+    const form = event.target as HTMLFormElement;
     const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const data = Object.fromEntries(formData)
+    const data = Object.fromEntries(formData);
 
-    // It is sending the data to the API (create-card/id) to be salved in the database
+    // This is the API call to create the card
+    try {
+      await axios.post(`http://localhost:3333/create-card/${authUser}`, {
+        title: data.title,
+        description: data.description,
+        weekDays: data.weekDays,
+        hourStart: data.hourStart,
+        hourEnd: data.hourEnd,
+      })
+      .then((response) => {
+        setResponse(response.data);
+        console.log(response.data);
+        alert("Card created successfully!");
+      })
+      await handleCreateSuggestedCard(form);
     
-    // try {
-    //   await axios.post(`http://localhost:3333/create-card/${authUser}`, {
-    //     title: data.title,
-    //     description: data.description,
-    //     weekDays: data.weekDays,
-    //     hourStart: data.hourStart,
-    //     hourEnd: data.hourEnd,
-    //   })
-
-    //   console.log(data)
-    //   alert("Card created successfully!")
-      // createSuggestionsCard()
-    
-    // } catch (error) {
-
-    //   console.log(error)
-    //   alert("Error while creating the card, try again!")
-    // }
-
-  // const createSuggestionsCard = async () => {
-    await axios.post(`http://localhost:3333/create-card/${authUser}`, {
-      title: data.title,
-      description: data.description,
-      weekDays: data.weekDays,
-      hourStart: data.hourStart,
-      hourEnd: data.hourEnd,
-    })
-    .then((response) => {
-      setResponse(response.data);
-      console.log(response.data);
-      alert("Card created successfully!")
-    })
-    .catch((err) => {
-      console.log(err)
-      alert("Error while creating the card, try again!")
-    })
-    
-    handleCreateSuggestedCard(response)    
+    } catch (err) {
+      console.log(err);
+      alert("Error while creating the user card, try again!");
+    }
   }
 
-  const handleCreateSuggestedCard = async (response: any) => {
-    await axios.post(`http://localhost:3333/create-suggested-card/`, {
-      // check what is inside response.title/ response.description
-      prompt: response.title + " " + response.description + "How can I improve it?",
-  })
-  .then((response) => {
-    // SETSUUGESTEDRESPONSE(response.data);
-    console.log(response.data);
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-}
+  // This is the function that creates the suggested card
+  const handleCreateSuggestedCard = async (form: HTMLFormElement) => {
 
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
+        // title: data.title,
+        // description: data.description,
+          // prompt: title + " " + description + " How can I improve it?",
+          prompt: data.title + " " + data.description + " How can I improve it?",
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+    } catch (err) {
+      console.log(err);
+      alert("Error while creating the suggested card, try again!");
+    }
+  };
 
   return (
     <Dialog.Portal>
@@ -118,8 +104,7 @@ export function CreateCardModal() {
         </Dialog.Description>
 
         {/* Check Form with Component folder */}
-        <form onSubmit={ handleCreateCard } className="flex flex-col gap-4">
-
+        <form onSubmit={handleCreateCard} className="flex flex-col gap-4">
           {/* Title */}
           <div className="mt-7 flex flex-col">
             <label htmlFor="title" className="text-xl font-semibold">
@@ -133,7 +118,12 @@ export function CreateCardModal() {
             <label htmlFor="description" className="text-xl font-semibold">
               Description
             </label>
-            <Input name="description" id="description" placeholder="Lorem ipsum" required />
+            <Input
+              name="description"
+              id="description"
+              placeholder="Lorem ipsum"
+              required
+            />
           </div>
 
           {/* Feelins questions */}
@@ -164,8 +154,8 @@ export function CreateCardModal() {
               What day(s) was it?
             </label>
 
-            <ToggleGroup.Root 
-              type="multiple" 
+            <ToggleGroup.Root
+              type="multiple"
               className="flex justify-between items-center mt-2"
               value={weekDays}
               onValueChange={setweekDays}
@@ -173,7 +163,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="0"
                 title="Sunday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('0') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("0") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Sun
@@ -181,7 +173,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="1"
                 title="Monday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('1') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("1") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Mon
@@ -189,7 +183,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="2"
                 title="Tuesday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('2') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("2") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Tus
@@ -197,7 +193,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="3"
                 title="Wednesday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('3') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("3") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Wed
@@ -205,7 +203,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="4"
                 title="Thursday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('4') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("4") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Thu
@@ -213,7 +213,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="5"
                 title="Friday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('5') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("5") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Fri
@@ -221,7 +223,9 @@ export function CreateCardModal() {
               <ToggleGroup.Item
                 value="6"
                 title="Saturday"
-                className={`w-12 h-8 rounded text-white ${weekDays.includes('6') ? 'bg-[#5C2C5D]' : 'bg-zinc-800'}`}
+                className={`w-12 h-8 rounded text-white ${
+                  weekDays.includes("6") ? "bg-[#5C2C5D]" : "bg-zinc-800"
+                }`}
               >
                 {" "}
                 Sun
@@ -236,7 +240,12 @@ export function CreateCardModal() {
             </label>
 
             <div className="grid grid-cols-2 gap-2">
-              <Input name="hourStart" id="hourStart" type="time" placeholder="From" />
+              <Input
+                name="hourStart"
+                id="hourStart"
+                type="time"
+                placeholder="From"
+              />
               <Input name="hourEnd" id="hourEnd" type="time" placeholder="To" />
             </div>
           </div>
@@ -252,12 +261,11 @@ export function CreateCardModal() {
                   setAgree(false);
                 }
               }}
-
               className="w-5 h-5 p-0.5 rounded bg-zinc-800"
               required
             >
               <Checkbox.Indicator>
-                <MdCheck className="w-4 h-4 text-emerald-500"/>
+                <MdCheck className="w-4 h-4 text-emerald-500" />
               </Checkbox.Indicator>
             </Checkbox.Root>
             I allow the AI helping me based on the information provided.
@@ -283,4 +291,3 @@ export function CreateCardModal() {
     </Dialog.Portal>
   );
 }
-

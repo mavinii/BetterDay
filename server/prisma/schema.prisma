@@ -42,6 +42,7 @@ model SuggestedCard {
   
   title       String
   description String
+  aiAnwser    String
   createdAt   DateTime    @default(now())
 
   // but this suggestions cards can only have one card
