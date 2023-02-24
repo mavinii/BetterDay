@@ -79,10 +79,8 @@ export function CreateCardModal() {
 
     try {
       await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
-        // title: data.title,
-        // description: data.description,
-          // prompt: title + " " + description + " How can I improve it?",
-          prompt: data.title + " " + data.description + " How can I improve it?",
+
+        prompt: data.title + " " + data.description + " How can I improve it?"
       })
       .then((response) => {
         console.log(response.data);
@@ -124,28 +122,6 @@ export function CreateCardModal() {
               placeholder="Lorem ipsum"
               required
             />
-          </div>
-
-          {/* Feelins questions */}
-          <div className="mt-2">
-            <label htmlFor="goodOrBar" className="text-xl font-semibold">
-              My feelings about it:
-            </label>
-
-            <div className="flex justify-between items-center">
-              <div>
-                <Input type="radio" id="good" name="good" />
-                <label htmlFor="good"> Good </label>
-              </div>
-              <div>
-                <Input type="radio" id="bad" name="bad" />
-                <label htmlFor="bad"> Bad </label>
-              </div>
-              <div>
-                <Input type="radio" id="iamnotsure" name="iamnotsure" />
-                <label htmlFor="iamnotsure"> I am not sure </label>
-              </div>
-            </div>
           </div>
 
           {/* What time and days of the week  */}

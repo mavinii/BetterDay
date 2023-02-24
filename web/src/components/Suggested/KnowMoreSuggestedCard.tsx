@@ -10,7 +10,7 @@ import React, { useEffect } from "react";
 interface Suggested {
   title: string;
   description: string;
-  
+  aiAnwser: string;
   // TODO: 
   // Future implementation
   // id: number;
@@ -45,11 +45,12 @@ export function CreateCardSuggested() {
         {suggestedCards[0] && (
           <>
             <Dialog.Title className="text-3xl font-bold">
-              {suggestedCards[0].title}
+              {/* {suggestedCards[0].title} */}
+              {"Suggested by AI"}
             </Dialog.Title>
 
             <Dialog.Description className="text-xs font-thin">
-              {suggestedCards[0].description}
+              {suggestedCards[0].aiAnwser}
             </Dialog.Description>
           </>
         )}

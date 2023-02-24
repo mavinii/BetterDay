@@ -13,7 +13,7 @@ interface Suggested {
   cardAbout: string;
   createdAt: string;
   icon: string;
-  title: string;
+  aiAnwser: string;
   description: string;
   userUrl: string;
   backgroundColor: string;
@@ -60,8 +60,7 @@ export default function SuggestedCardModel() {
                   cardAbout={suggestedCard.cardAbout}
                   createdAt={suggestedCard.createdAt}
                   icon={suggestedCard.icon}
-                  title={suggestedCard.title}
-                  description={suggestedCard.description}
+                  aiAnwser={suggestedCard.aiAnwser}
                   backgroundColor="#1E293B"
                 />
               );
@@ -73,8 +72,7 @@ export default function SuggestedCardModel() {
               cardAbout="Meditation"
               createdAt="26/01/2023"
               icon="https://img.icons8.com/ios/50/000000/idea.png"
-              title="It's okay to feel overwhelmed at times."
-              description="This is the example how the user card should look like."
+              aiAnwser="It's okay to feel overwhelmed at times."
               backgroundColor="#1E293B"
             />
           </>

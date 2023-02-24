@@ -81,7 +81,7 @@ app.post("/create-card/:id", async (req, res) => {
 
 app.post("/create-suggested-card/:id", async (req, res) => {
 
-  const { prompt } = req.body;
+  const { prompt }: any = req.body;
   const userId: any = req.params.id;
   const body: any = req.body;
 
@@ -101,9 +101,7 @@ app.post("/create-suggested-card/:id", async (req, res) => {
   const createSuggestedCard = await prisma.suggestedCard.create({
     data: {
       userId: userId,
-      title: body.title,
-      description: body.description,
-      aiAnwser: response.data.choices[0].text,      
+      aiAnwser: response.data.choices[0].text
     }
   });
 
@@ -115,11 +113,7 @@ app.post("/create-suggested-card/:id", async (req, res) => {
     // return res.status(response.status).json(response.data);
     console.log(`Deu ruim aqui > ${response.data.choices[0].text}`);
   }
-
-  //   return res.status(201).json(createSuggestedCard);
-  // } else {
-  //   return res.status(response.status).json(response.data);
-  // }
+  
 });
 
 /**
@@ -136,8 +130,7 @@ app.get("/suggested-cards/", async (req, res) => {
     // },
     select: {
       id: true,
-      title: true,
-      description: true,
+      aiAnwser: true,
       createdAt: true,
     },
     orderBy: {
@@ -158,8 +151,7 @@ app.get("/card/:id/suggested", async (req, res) => {
 
   const suggestedCard = await prisma.suggestedCard.findFirstOrThrow({
     select: {
-      title: true,
-      description: true,
+      aiAnwser: true,
       createdAt: true,
     },
     where: {
@@ -168,8 +160,6 @@ app.get("/card/:id/suggested", async (req, res) => {
   });
 
   return res.json({
-    title: suggestedCard.title,
-    description: suggestedCard.description,
     createdAt: suggestedCard.createdAt,
   });
 });

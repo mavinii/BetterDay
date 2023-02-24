@@ -22,8 +22,6 @@ CREATE TABLE "Card" (
 CREATE TABLE "SuggestedCard" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "userId" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
     "aiAnwser" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "SuggestedCard_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE

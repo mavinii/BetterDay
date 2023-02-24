@@ -1,7 +1,5 @@
-import * as Dialog from '@radix-ui/react-dialog';
 import React from "react";
 import CreateSuggested from './KnowMoreButton';
-// import { KnowMoreModal } from "./KnowMoreModal";
 
 /**
  * TODO: Create a function that the user can like the suggested cards
@@ -9,8 +7,9 @@ import CreateSuggested from './KnowMoreButton';
  */
 interface SuggestedCardsProps {
   cardAbout: string;
-  title: string;
-  description: string;
+  aiAnwser: string;
+  // title: string;
+  // description: string;
   createdAt: string;
   icon: string;
   backgroundColor: string;
@@ -23,6 +22,7 @@ interface SuggestedCardsProps {
 export default class SuggestedCards extends React.Component<SuggestedCardsProps> {
   render() {
     const { backgroundColor } = this.props;
+    const { aiAnwser } = this.props;
 
     return (
       <div
@@ -55,11 +55,11 @@ export default class SuggestedCards extends React.Component<SuggestedCardsProps>
               <line x1="3" y1="22" x2="21" y2="22" />
             </svg>
           </div>
-          <strong className="text-2xl font-medium">{this.props.title}</strong>
+          <strong className="text-2xl font-medium">{ aiAnwser }</strong>
         </div>
 
         {/* Card sub-title, button and heart and comments icons */}
-        <div>{this.props.description}</div>
+        {/* <div>{this.props.description}</div> */}
         <div className="flex justify-between items-center">
           
           {/* Button know more */}
