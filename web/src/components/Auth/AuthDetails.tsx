@@ -6,7 +6,6 @@ import { auth } from "../../../firebase/firebaseConfig";
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState<{ email: string | null } | null>(null);
   
-
   useEffect(() => {
     const linsten = onAuthStateChanged(auth, (user) => {
       if (user) {

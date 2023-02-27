@@ -21,6 +21,7 @@ interface SuggestedCardsProps {
 */
 export default class SuggestedCards extends React.Component<SuggestedCardsProps> {
   render() {
+
     const { backgroundColor } = this.props;
     const { aiAnwser } = this.props;
 
