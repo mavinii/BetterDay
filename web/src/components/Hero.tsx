@@ -1,16 +1,16 @@
-import { MdDoneAll, MdFactCheck, MdOutlineAddCircle, } from "react-icons/md";
+import { MdDoneAll, MdFactCheck, MdOutlineAddCircle } from "react-icons/md";
 
 export default function Hero() {
   return (
     <section className="mb-10">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center">
-            
+          
           {/* Left Side Image */}
           <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-2 shadow-lg rounded-lg bg-[#2965a0]">
               <img
-                alt="..."
+                alt="unplash random images"
                 src="https://source.unsplash.com/368x245/?wallpaper"
                 className="w-full align-middle rounded-t-lg"
               ></img>
@@ -24,12 +24,14 @@ export default function Hero() {
                 ></svg>
 
                 <h3 className="text-xl font-bold text-white">
-                  Hey, you should try meditation
+                  Be kind to yourself
                 </h3>
                 <p className="text-md font-light mt-3 text-white">
-                  Meditation is a practice where an individual uses a technique
-                  - to train attention and awareness, and achieve a mentally
-                  clear and emotionally calm and stable state.
+                  Feeling overwhelmed is OK, especially now. It also helps to
+                  remember that feeling overwhelmed doesn't have to last. Give
+                  yourself some grace - if you don't get to that chore or have
+                  to ask for an extension at work, you can. Your mental health
+                  should be a top priority.
                 </p>
               </blockquote>
             </div>
@@ -49,7 +51,7 @@ export default function Hero() {
                 <div className="flex items-center">
                   <div>
                     <span className="text-3xl text-green-600 mr-3 inline-block">
-                        <MdOutlineAddCircle />
+                      <MdOutlineAddCircle />
                     </span>
                   </div>
                   <div>
@@ -63,7 +65,7 @@ export default function Hero() {
                 <div className="flex items-center">
                   <div>
                     <span className="text-3xl text-green-600 mr-3 inline-block">
-                        <MdFactCheck />
+                      <MdFactCheck />
                     </span>
                   </div>
                   <div>
@@ -77,7 +79,7 @@ export default function Hero() {
                 <div className="flex items-center">
                   <div>
                     <span className="text-3xl text-green-600 mr-3 inline-block">
-                        <MdDoneAll />
+                      <MdDoneAll />
                     </span>
                   </div>
                   <div>

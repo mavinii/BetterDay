@@ -19,7 +19,7 @@ const AuthDetails = () => {
     return () => linsten();
   }, []);
 
-  // this function signs out the current user
+  // This function signs out the current user
   const handleSignOut = () => {
     auth
       .signOut()

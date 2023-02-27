@@ -40,9 +40,9 @@ export function CreateCardModal() {
 
   // This function sends the data to the API the card the user created
   async function handleCreateCard(event: FormEvent) {
-    
+
     // It prevents the page to reload
-    event.preventDefault();
+    // event.preventDefault();
 
     // It is getting the data from the form
     const form = event.target as HTMLFormElement;
@@ -51,43 +51,46 @@ export function CreateCardModal() {
 
     // This is the API call to create the card
     try {
-      await axios.post(`http://localhost:3333/create-card/${authUser}`, {
-        title: data.title,
-        description: data.description,
-        weekDays: data.weekDays,
-        hourStart: data.hourStart,
-        hourEnd: data.hourEnd,
-      })
-      .then((response) => {
-        setResponse(response.data);
-        console.log(response.data);
-        alert("Card created successfully!");
-      })
+      await axios
+        .post(`http://localhost:3333/create-card/${authUser}`, {
+          title: data.title,
+          description: data.description,
+          weekDays: data.weekDays,
+          hourStart: data.hourStart,
+          hourEnd: data.hourEnd,
+        })
+        .then((response) => {
+          setResponse(response.data);
+          console.log(response.data);
+          alert("Card created successfully!");
+          window.location.reload();
+        });
       await handleCreateSuggestedCard(form);
-    
     } catch (err) {
       console.log(err);
-      alert("Error while creating the user card, try again!");
+      alert("Oops, something went wrong while creating your card, please try again!");
+      window.location.reload();
     }
   }
 
   // This is the function that creates the suggested card
   const handleCreateSuggestedCard = async (form: HTMLFormElement) => {
-
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
     try {
-      await axios.post(`http://localhost:3333/create-suggested-card/${authUser}`, {
-
-        prompt: data.title + " " + data.description + " How can I improve it?"
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
+      await axios
+        .post(`http://localhost:3333/create-suggested-card/${authUser}`, {
+          prompt:
+            data.title + " " + data.description + " How can I improve it?",
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
     } catch (err) {
       console.log(err);
-      alert("Error while creating the suggested card, try again!");
+      alert("I couldn't create your card, please try again!");
+      
     }
   };
 
@@ -96,22 +99,25 @@ export function CreateCardModal() {
       <Dialog.Overlay className="fixed inset-0 bg-black/60" />
 
       <Dialog.Content className="fixed bg-[#e5e5e5] py-8 px-10 text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[480] shadow-lg shadow-black/20">
-        <Dialog.Title className="text-3xl font-bold">Lorem ipsum</Dialog.Title>
-        <Dialog.Description className="text-xs font-thin">
-          27/01/2012
-        </Dialog.Description>
+        <Dialog.Title className="text-3xl font-bold">Creating a new card</Dialog.Title>
 
-        {/* Check Form with Component folder */}
+        {/* TODO: Create a function that will get the exacly day/mouth and year */}
+        <Dialog.Description className="text-sm font-normal">Add new card of what has been happening</Dialog.Description>
+
+        {/* Form title and description */}
         <form onSubmit={handleCreateCard} className="flex flex-col gap-4">
-          {/* Title */}
+
           <div className="mt-7 flex flex-col">
             <label htmlFor="title" className="text-xl font-semibold">
               Title
             </label>
-            <Input name="title" id="title" placeholder="Lorem ipsum" required />
+            <Input 
+              name="title" id="title" 
+              placeholder="Feeling overwhelmed and anxious" 
+              required 
+            />
           </div>
 
-          {/* Description */}
           <div className="mt-2 flex flex-col">
             <label htmlFor="description" className="text-xl font-semibold">
               Description
@@ -119,7 +125,7 @@ export function CreateCardModal() {
             <Input
               name="description"
               id="description"
-              placeholder="Lorem ipsum"
+              placeholder="I have been working hard and have been feeling overwhel..."
               required
             />
           </div>

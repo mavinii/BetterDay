@@ -55,7 +55,7 @@ export default class SuggestedCards extends React.Component<SuggestedCardsProps>
               <line x1="3" y1="22" x2="21" y2="22" />
             </svg>
           </div>
-          <strong className="text-2xl font-medium">{ aiAnwser }</strong>
+          <strong className="text-2xl font-medium">{ aiAnwser.slice(0, 55) }...</strong>
         </div>
 
         {/* Card sub-title, button and heart and comments icons */}
@@ -63,7 +63,7 @@ export default class SuggestedCards extends React.Component<SuggestedCardsProps>
         <div className="flex justify-between items-center">
           
           {/* Button know more */}
-          <CreateSuggested />          
+          <CreateSuggested />
           
           <div className="py-1 rounded-lg flex space-x-2 flex-row">
 						<div className="cursor-pointer text-center text-md justify-center items-center flex">

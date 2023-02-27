@@ -17,6 +17,9 @@ interface CardsProps {
   backgroundColor: string;
 }
 
+/**
+ * This is responsible to display the cards the user creates
+**/
 export default class Cards extends React.Component<CardsProps> {
   render() {
     const { backgroundColor } = this.props;
@@ -32,7 +35,7 @@ export default class Cards extends React.Component<CardsProps> {
           <span className="uppercase text-xs text-white">
             {"#" + this.props.title}
           </span>
-          <span className="text-xs text-white">{this.props.createdAt}</span>
+          <span className="text-sm text-white">{this.props.createdAt}</span>
         </div>
 
         {/* Card icon and title */}
@@ -57,10 +60,13 @@ export default class Cards extends React.Component<CardsProps> {
         </div>
 
         {/* Card sub-title, user img and button */}
-        {/* TODO: push the user picture to the right side, where the button was */}
-        <div>{this.props.description}</div>
+        <div className="text-sm">
+          {this.props.description}
+        </div>
+        
+        {/* TODO: User picture */}
         <div className="flex justify-between items-center">
-          <div>
+          {/* <div>
             <dt className="sr-only">Users</dt>
             <dd className="flex justify-start -space-x-1.5">
               <a href="#" className="inline-block -m-1">
@@ -71,7 +77,7 @@ export default class Cards extends React.Component<CardsProps> {
                 />
               </a>
             </dd>
-          </div>
+          </div> */}
         </div>
       </div>
     );

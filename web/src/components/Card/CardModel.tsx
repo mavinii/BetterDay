@@ -17,6 +17,10 @@ interface Card {
   backgroundColor: string;
 }
 
+/**
+ * This function is responsible to display the cards, but it first checks if the user is logged in
+ * if not, it will display the example card 
+ */
 export default function CardModel() {
     
   // It hands the list of Cards the user created
@@ -72,7 +76,7 @@ export default function CardModel() {
     ) : (
 
       <>
-        {/* This is the card example hide it once the user is logged in */}
+        {/* This is the card example, it will be hide once the user is logged in */}
         <Cards
           cardAbout="#Example"
           createdAt="15/11/2022"

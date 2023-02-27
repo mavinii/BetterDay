@@ -113,7 +113,6 @@ app.post("/create-suggested-card/:id", async (req, res) => {
     // return res.status(response.status).json(response.data);
     console.log(`Deu ruim aqui > ${response.data.choices[0].text}`);
   }
-  
 });
 
 /**

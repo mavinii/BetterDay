@@ -7,7 +7,7 @@ import { Input } from "../Form/Input";
 import * as Dialog from "@radix-ui/react-dialog";
 import axios from "axios";
 
-// Function to register a new user
+// Function to register a new user in the database (Firebase and Prisma)
 export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,28 +19,30 @@ export function SignUp() {
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-
         createUserInDatabase(userCredential.user.uid);
-        console.log(`User created: ${userCredential.user.email}`);        
+        console.log(`User created: ${userCredential.user.email}`);
+        alert(`Hi ${userCredential.user.email}, welcome to A BetterDay!`);
 
         // Once the user is created, we reload the page to show the new user
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        alert(`Oops, something went wrong, please try again!`);
       });
   };
 
   // This function saves the user.uid, name and email in the database using axions, the user.uid is generate by firebase
   async function createUserInDatabase(uid: string) {
-      await axios.post(`http://localhost:3333/user/${uid}`, {
+    await axios
+      .post(`http://localhost:3333/user/${uid}`, {
         name: name,
         email: email,
       })
       .then(() => {
-        console.log("User created in the database");
+        console.log("User created in the database (Firebase and Prisma).");
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +65,7 @@ export function SignUp() {
         <form onSubmit={handleSignUp}>
           <div className="mt-7 flex flex-col">
             <label htmlFor="title" className="text-xl font-semibold">
-              Enter your name 123456 John :
+              Enter your name:
             </label>
             <Input
               type="name"

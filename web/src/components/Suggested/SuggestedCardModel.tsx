@@ -36,7 +36,6 @@ export default function SuggestedCardModel() {
         setAuthUser(null);
       }
     });
-
     return () => linsten();
   }, []);
 

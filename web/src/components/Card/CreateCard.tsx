@@ -6,7 +6,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../../../firebase/firebaseConfig";
 
-// This the title and the button to create a new card
+/**
+ * This is responsible to render the Title and Subtitle and the button to add a new card,
+ * but it first checks if the user is logged in, if not, it will display a disable button.
+*/
 export default function CreateCard() {
   const [authUser, setAuthUser] = useState<{ email: string | null } | null>(null);
 
@@ -23,6 +26,8 @@ export default function CreateCard() {
   }, []);
 
   return (
+
+    // Title and Subtitle
     <div className="py-3 flex justify-between items-center">
       <div>
         <strong className="text-4xl font-extrabold text-gray-900">
