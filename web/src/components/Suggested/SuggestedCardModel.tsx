@@ -20,7 +20,6 @@ interface Suggested {
 }
 
 export default function SuggestedCardModel() {
-  
   // It hands the list of Suggested Cards by AI, based in the user created
   const [suggestedCards, setSuggestedCards] = React.useState<Suggested[]>([]);
   const [authUser, setAuthUser] = useState<{ email: string | null } | null>(
@@ -52,6 +51,7 @@ export default function SuggestedCardModel() {
         <CreateCardSuggested />
         {authUser ? (
           <>
+            {/* It displays the card the user will be creating */}
             {suggestedCards.map((suggestedCard) => {
               return (
                 <SuggestedCards
@@ -67,11 +67,36 @@ export default function SuggestedCardModel() {
           </>
         ) : (
           <>
+            {/* These are the cards examples, it will be hide once the user is logged in */}
             <SuggestedCards
-              cardAbout="Meditation"
-              createdAt="26/01/2023"
+              cardAbout="Feeling overwhelmed and down today."
+              createdAt="27/02/2023"
               icon="https://img.icons8.com/ios/50/000000/idea.png"
               aiAnwser="It's okay to feel overwhelmed at times."
+              backgroundColor="#1E293B"
+            />
+
+            <SuggestedCards
+              cardAbout="Feeling anxious about upcoming exams."
+              createdAt="27/02/2023"
+              icon="https://img.icons8.com/ios/50/000000/idea.png"
+              aiAnwser="Feeling anxious about upcoming exams, especially when your grades aren't where you want them to be. "
+              backgroundColor="#1E293B"
+            />
+
+            <SuggestedCards
+              cardAbout="Feeling overwhelmed and down today."
+              createdAt="27/02/2023"
+              icon="https://img.icons8.com/ios/50/000000/idea.png"
+              aiAnwser="It's okay to feel overwhelmed at times."
+              backgroundColor="#1E293B"
+            />
+
+            <SuggestedCards
+              cardAbout="Daily Tips"
+              createdAt="27/02/2023"
+              icon="https://img.icons8.com/ios/50/000000/idea.png"
+              aiAnwser="Hey, I created daily tips for you, check this out."
               backgroundColor="#1E293B"
             />
           </>

@@ -40,8 +40,6 @@ export default function CardModel() {
     return () => linsten();
   }, []);
 
-
-
   // It is fetching the Cards Data from the API
   useEffect(() => {
     axios(`http://localhost:3333/cards/:id`).then((response) => {
@@ -76,17 +74,37 @@ export default function CardModel() {
     ) : (
 
       <>
-        {/* This is the card example, it will be hide once the user is logged in */}
+        {/* These are the cards examples, it will be hide once the user is logged in */}
         <Cards
-          cardAbout="#Example"
-          createdAt="15/11/2022"
+          cardAbout="#Feeling overwhelmed and down today."
+          createdAt="27/02/2023"
           icon="https://img.icons8.com/ios/50/000000/idea.png"
           title="Feeling overwhelmed and down today."
           description="This is the example how the user card should look like."
           // userUrl="https://thispersondoesnotexist.com/image"
+          backgroundColor="#9A8E8B"
+        />
+
+        <Cards
+          cardAbout="#Anxious."
+          createdAt="27/02/2023"
+          icon="https://img.icons8.com/ios/50/000000/idea.png"
+          title="Anxious."
+          description="College exams are getting close and my grade is not that good, I'm feeling anxious..."
+          // userUrl="https://thispersondoesnotexist.com/image"
           backgroundColor="#EB5757"
         />
-      
+
+        {/* TODO: Use this title and description as an example */}
+        <Cards
+          cardAbout="#Feeling sad and guess why?"
+          createdAt="27/02/2023"
+          icon="https://img.icons8.com/ios/50/000000/idea.png"
+          title="Feeling sad and guess why?"
+          description="I forgot the car keys, arrived at the job interview so late and lost the job opportunity."
+          // userUrl="https://thispersondoesnotexist.com/image"
+          backgroundColor="#4B9AD6"
+        />      
       </>
     )}
     </div>

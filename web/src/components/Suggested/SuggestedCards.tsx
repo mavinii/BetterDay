@@ -60,7 +60,6 @@ export default class SuggestedCards extends React.Component<SuggestedCardsProps>
         </div>
 
         {/* Card sub-title, button and heart and comments icons */}
-        {/* <div>{this.props.description}</div> */}
         <div className="flex justify-between items-center">
           
           {/* Button know more */}
