@@ -3,6 +3,9 @@ import "./styles/main.css";
 
 import logoImage from "./assets/betterDay-logo.svg";
 
+// Toastify
+import { ToastContainer } from 'react-toastify';
+
 // Navbar, Picture, Welcome title and buttons
 import { Nav } from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -22,6 +25,9 @@ function App() {
 
       {/* TOP BAR NAVIGATION */}
       <Nav />
+
+      {/* Toast for sign in, out, create card, delete card, errors... */}
+      <ToastContainer />
 
       {/* REGISTER BTN AND MAIN PICTURE */}
       <Hero />

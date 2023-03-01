@@ -6,6 +6,10 @@ import { Input } from "../Form/Input";
 // Radix UI
 import * as Dialog from "@radix-ui/react-dialog";
 
+// Toastify
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // Sign in form
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -18,15 +22,44 @@ export function SignIn() {
     try{
       await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        alert('Signed in successfully')
         console.log(userCredential);
-        window.location.reload();
+        notify();
+
+        // Reload the page after 4 seconds
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       })
     } 
     catch(e) {
+      notifyError();
       console.log(`Error: ${e}`);
     }
   };
+
+  // Success message
+  const notify = () => toast.success('Have a BetterDay!', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  // Error message
+  const notifyError = () => toast.error('Oops, check your email and password.', {
+    position: "top-right",
+    autoClose: false,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   return (
     <Dialog.Portal>

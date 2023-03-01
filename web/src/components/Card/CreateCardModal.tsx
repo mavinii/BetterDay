@@ -9,6 +9,10 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
+// Toastify
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // Firebase
 import { auth } from "../../../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -42,7 +46,7 @@ export function CreateCardModal() {
   async function handleCreateCard(event: FormEvent) {
 
     // It prevents the page to reload
-    // event.preventDefault();
+    event.preventDefault();
 
     // It is getting the data from the form
     const form = event.target as HTMLFormElement;
@@ -52,24 +56,35 @@ export function CreateCardModal() {
     // This is the API call to create the card
     try {
       await axios
-        .post(`http://localhost:3333/create-card/${authUser}`, {
-          title: data.title,
-          description: data.description,
-          weekDays: data.weekDays,
-          hourStart: data.hourStart,
-          hourEnd: data.hourEnd,
-        })
-        .then((response) => {
-          setResponse(response.data);
-          console.log(response.data);
-          alert("Card created successfully!");
+      .post(`http://localhost:3333/create-card/${authUser}`, {
+        title: data.title,
+        description: data.description,
+        weekDays: data.weekDays,
+        hourStart: data.hourStart,
+        hourEnd: data.hourEnd,
+      })
+      .then((response) => {
+        setResponse(response.data);
+        console.log(response.data);
+
+        // This notify the user that the card is being created
+        notify();
+
+        // This tells the user that the card is being created
+        setTimeout(() => {
+          notifyCreatingCard();
+        }, 4000);
+
+        // Reload the page after 7 seconds
+        // It gives time enough to the AI to create the suggested card
+        setTimeout(() => {
           window.location.reload();
-        });
+        }, 7000);
+      });
       await handleCreateSuggestedCard(form);
     } catch (err) {
       console.log(err);
-      alert("Oops, something went wrong while creating your card, please try again!");
-      window.location.reload();
+      notifyError();
     }
   }
 
@@ -89,10 +104,44 @@ export function CreateCardModal() {
         });
     } catch (err) {
       console.log(err);
-      alert("I couldn't create your card, please try again!");
-      
+      notifyError();      
     }
   };
+
+  // Success message
+  const notify = () => toast.info('I am reading your card, hold on...', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  const notifyCreatingCard = () => toast.success('Done! Check this out...', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  // Error message
+  const notifyError = () => toast.error('Oops, something went wrong while creating your card, please try again!', {
+    position: "top-right",
+    autoClose: false,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   return (
     <Dialog.Portal>
@@ -133,7 +182,7 @@ export function CreateCardModal() {
           {/* What time and days of the week  */}
           <div>
             <label htmlFor="time" className="text-xl font-semibold">
-              What day(s) was it?
+              What day(s) is/was it?
             </label>
 
             <ToggleGroup.Root

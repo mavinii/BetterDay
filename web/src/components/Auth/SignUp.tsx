@@ -7,6 +7,10 @@ import { Input } from "../Form/Input";
 import * as Dialog from "@radix-ui/react-dialog";
 import axios from "axios";
 
+// Toastify
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // Function to register a new user in the database (Firebase and Prisma)
 export function SignUp() {
   const [name, setName] = useState("");
@@ -21,16 +25,18 @@ export function SignUp() {
       .then((userCredential) => {
         createUserInDatabase(userCredential.user.uid);
         console.log(`User created: ${userCredential.user.email}`);
-        alert(`Hi ${userCredential.user.email}, welcome to A BetterDay!`);
+        notify();
 
-        // Once the user is created, we reload the page to show the new user
-        window.location.reload();
+        // Reload the page after 4 seconds
+        setTimeout(() => {
+          window.location.reload();
+        }, 3010);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        alert(`Oops, something went wrong, please try again!`);
+        console.log(errorCode, errorMessage);``
+        notifyError();
       });
   };
 
@@ -48,6 +54,30 @@ export function SignUp() {
         console.log(error);
       });
   }
+
+  // Success message
+  const notify = () => toast.info('Welcome to A BetterDay', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  // Error message
+  const notifyError = () => toast.error('Oops, something went wrong, please try again!.', {
+    position: "top-right",
+    autoClose: false,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   return (
     <Dialog.Portal>

@@ -1,6 +1,10 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../../../firebase/firebaseConfig";
+
+// Toastify
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // This function is used to get the current user
 const AuthDetails = () => {
@@ -23,14 +27,31 @@ const AuthDetails = () => {
     auth
       .signOut()
       .then(() => {
-        alert("Sign Out successfully");
         console.log("Sign Out successfully");
-        window.location.reload();
+        notify();
+        
+        // Reload the page after 4 seconds
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  // Success message
+  const notify = () => toast.success('Sign Out successfully!', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
   return (
     <div>
       {/* TODO: Should I do the same the check if the user is connected before creating a card? */}
