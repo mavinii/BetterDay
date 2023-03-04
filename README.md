@@ -63,6 +63,7 @@ npx prisma studio
 - [React Icons](https://react-icons.github.io/react-icons/icons?name=md) - is a library of icons for React.
 - [Axios](https://www.npmjs.com/package/axios) - helps us to make HTTP requests to our API using Node.
 - [Firebase](https://firebase.google.com/) - is a Backend as a Service (BaaS) developed by Firebase, Inc. in 2011, then acquired by Google in 2014.
+- [React-Toastify](https://www.npmjs.com/package/react-toastify) - toasts will be displayed once the user signs in, or out, create a card, and the AI generates a new card...
 
 ## 🚀 Back-end:
 
@@ -110,6 +111,47 @@ npx prisma studio
 
 ### Server:
 - [Cors Documentation](https://expressjs.com/en/resources/middleware/cors.html)
+
+
+# Future Implementations
+
+### User:
+- A dashboard with image, name, and email;
+- Users should be able to edit/delete their information account;
+
+### Card:
+- Generate random colours for the cards the user will be creating;
+- Each card should have an icon to show the user what kind of card is.
+- The first row of the cards, should have a "carrousel" with the cards that the user created.
+
+### Suggested Card:
+- Limited the AI to answer just questions related to the user well being.
+- Suggested cards should have the same # of cards that the user created.
+- Liked icon that works;
+- Formate the data type that is displayed in the database.
+- The main card could be displaying daily tips. Encouragement words? or things the user has been doing?
+
+## Bugs
+
+### Card:
+- If the user doesn't input the days or times, it crashes the system.
+
+### Suggested Card:
+- When there are many cards, and when the user clicks the "know more button", it will get the last card created and not the property card itself.
+- In the pop-up card that opens when the user clicks on the "know more button", it doesn't display all the information the AI generated.
+
+### Database:
+- On Prisma Studio, there aren't enough characters for the AI response, which is why, the suggested card, is missing more text from the AI.
+
+
+## Extra
+
+### Other tools:
+Some tools I can use to create/training the AI:
+
+> https://wit.ai/
+
+> https://dialogflow.cloud.google.com/cx/projects
 
 
 ## ⚠️ Copyright:

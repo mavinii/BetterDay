@@ -8,14 +8,15 @@ import { convertMinToHrs } from "./utils/convert-min-to-hrs";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "YOUR_API_KEY_HERE",
 });
 
 const openai = new OpenAIApi(configuration);
 
-const app = express(); // creating express app
-app.use(express.json()); // using json as body parser
-app.use(cors()); // using cors to allow the frontend to connect to the backend
+const app = express();    // creating express app
+app.use(express.json());  // using json as body parser
+app.use(cors());          // using cors to allow the frontend to connect to the backend
+
 
 /**
  *  This is the prisma client, that will be used to connect to the database
@@ -24,6 +25,7 @@ app.use(cors()); // using cors to allow the frontend to connect to the backend
 const prisma = new PrismaClient({
   log: ["query"],
 });
+
 
 /**
  *  This displays all the cards that the user created.
@@ -34,6 +36,7 @@ app.get("/cards/:id", async (req, res) => {
   const cards = await prisma.card.findMany();
   return res.json(cards);
 });
+
 
 /**
  *  This create the user with user.uid, name and email
@@ -53,6 +56,7 @@ app.post("/user/:id", async (req, res) => {
 
   return res.status(201).json(user);
 });
+
 
 /**
  *  This is the route to create a new card
@@ -78,6 +82,7 @@ app.post("/create-card/:id", async (req, res) => {
   return res.status(201).json(createCard);
   // console.log(card)
 });
+
 
 app.post("/create-suggested-card/:id", async (req, res) => {
 
@@ -114,6 +119,7 @@ app.post("/create-suggested-card/:id", async (req, res) => {
     console.log(`Deu ruim aqui > ${response.data.choices[0].text}`);
   }
 });
+
 
 /**
  *  This is the route to display all the cards suggested to the user by AI
@@ -162,6 +168,7 @@ app.get("/card/:id/suggested", async (req, res) => {
     createdAt: suggestedCard.createdAt,
   });
 });
+
 
 // Starting server
 app.listen(3333);
